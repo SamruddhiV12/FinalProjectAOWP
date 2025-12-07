@@ -1,0 +1,415 @@
+/* Temple-themed subtle color palette */
+:root {
+  --temple-gold: #C9A961;
+  --temple-dark-gold: #B8935F;
+  --temple-bronze: #8B7355;
+  --temple-cream: #F5F1E8;
+  --temple-ivory: #FFFDF7;
+  --temple-stone: #6B6B6B;
+  --temple-light-stone: #D4D4D4;
+  --accent-blue: #5A7FA5;
+  --accent-orange: #D4945A;
+  --accent-green: #7A9B76;
+}
+
+.students-list-container {
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  background: var(--temple-cream);
+  min-height: 100vh;
+}
+
+/* Header */
+.students-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.students-header h1 {
+  color: var(--temple-bronze);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.btn-back {
+  background: var(--temple-stone);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-back:hover {
+  background: var(--temple-bronze);
+  transform: translateY(-2px);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--temple-ivory);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--temple-light-stone);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+
+.stat-card p {
+  margin: 0;
+  color: var(--temple-stone);
+  font-size: 1rem;
+}
+
+.stat-card.total h3 {
+  color: var(--temple-dark-gold);
+}
+
+.stat-card.basic h3 {
+  color: var(--accent-blue);
+}
+
+.stat-card.intermediate h3 {
+  color: var(--accent-orange);
+}
+
+.stat-card.advanced h3 {
+  color: var(--accent-green);
+}
+
+/* Filters Section */
+.filters-section {
+  background: var(--temple-ivory);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--temple-light-stone);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-box {
+  margin-bottom: 1rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--temple-light-stone);
+  border-radius: 8px;
+  background: white;
+  transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--temple-gold);
+}
+
+.batch-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.batch-filters button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--temple-light-stone);
+  background: white;
+  color: var(--temple-stone);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.batch-filters button:hover {
+  border-color: var(--temple-gold);
+  color: var(--temple-bronze);
+}
+
+.batch-filters button.active {
+  background: var(--temple-gold);
+  color: white;
+  border-color: var(--temple-gold);
+}
+
+/* Results Info */
+.results-info {
+  margin-bottom: 1rem;
+  color: var(--temple-stone);
+  font-size: 0.95rem;
+}
+
+/* Students Table */
+.students-table-wrapper {
+  background: var(--temple-ivory);
+  border-radius: 12px;
+  border: 1px solid var(--temple-light-stone);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1400px;
+}
+
+.students-table thead {
+  background: var(--temple-bronze);
+  color: white;
+}
+
+.students-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.students-table tbody tr {
+  border-bottom: 1px solid var(--temple-light-stone);
+  transition: background 0.2s;
+}
+
+.students-table tbody tr:hover {
+  background: #FBF9F4;
+}
+
+.students-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.students-table td {
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.student-name strong {
+  color: var(--temple-bronze);
+  font-weight: 600;
+}
+
+/* Address Info */
+.address-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.city-state {
+  color: var(--temple-stone);
+  font-size: 0.85rem;
+}
+
+/* Badges */
+.batch-badge {
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.batch-badge.basic {
+  background: #E8F1F8;
+  color: var(--accent-blue);
+}
+
+.batch-badge.intermediate {
+  background: #FCF3E8;
+  color: var(--accent-orange);
+}
+
+.batch-badge.advanced {
+  background: #EDF5EC;
+  color: var(--accent-green);
+}
+
+.status-badge {
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-badge.active {
+  background: #EDF5EC;
+  color: var(--accent-green);
+}
+
+.status-badge.inactive {
+  background: #F5F5F5;
+  color: var(--temple-stone);
+}
+
+/* Edit Mode */
+.edit-row {
+  background: #FFF9E6 !important;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  border: 1px solid var(--temple-light-stone);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: var(--temple-gold);
+}
+
+.edit-select {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  border: 1px solid var(--temple-light-stone);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background: white;
+}
+
+.edit-select:focus {
+  outline: none;
+  border-color: var(--temple-gold);
+}
+
+/* Action Buttons */
+.btn-edit {
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.btn-edit:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+.btn-save {
+  background: var(--accent-green);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+  transition: all 0.3s;
+}
+
+.btn-save:hover {
+  background: #6A8A67;
+}
+
+.btn-cancel {
+  background: var(--temple-stone);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+  background: #5A5A5A;
+}
+
+/* Loading & Error States */
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+  color: var(--temple-stone);
+}
+
+.error {
+  color: #B8735F;
+  background: #FCF3E8;
+  border: 1px solid #E8D4C4;
+  border-radius: 8px;
+  margin: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .students-table-wrapper {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .students-list-container {
+    padding: 1rem;
+  }
+
+  .students-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .students-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-card h3 {
+    font-size: 2rem;
+  }
+
+  .batch-filters {
+    gap: 0.5rem;
+  }
+
+  .batch-filters button {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

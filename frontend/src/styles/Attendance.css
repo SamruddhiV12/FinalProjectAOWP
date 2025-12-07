@@ -1,0 +1,431 @@
+:root {
+  --temple-gold: #C9A961;
+  --temple-dark-gold: #B8935F;
+  --temple-bronze: #8B7355;
+  --temple-cream: #F5F1E8;
+  --temple-ivory: #FFFDF7;
+  --temple-stone: #6B6B6B;
+  --temple-light-stone: #D4D4D4;
+  --accent-green: #7A9B76;
+  --accent-orange: #D4945A;
+  --accent-blue: #5A7FA5;
+  --accent-purple: #9B7A9F;
+}
+
+.attendance-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.attendance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.attendance-header h1 {
+  color: var(--temple-bronze);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.btn-back {
+  background: var(--temple-stone);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+.info-banner {
+  background: rgba(90, 127, 165, 0.1);
+  border-left: 4px solid var(--accent-blue);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  color: var(--temple-bronze);
+}
+
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--temple-bronze);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 2px solid var(--temple-light-stone);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--temple-gold);
+}
+
+.quick-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-action {
+  padding: 0.75rem 1.5rem;
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+.btn-action.secondary {
+  background: var(--temple-stone);
+}
+
+.btn-action.secondary:hover {
+  background: #555;
+}
+
+.batch-info-card {
+  background: linear-gradient(135deg, var(--temple-cream) 0%, var(--temple-ivory) 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid var(--temple-gold);
+  margin-bottom: 2rem;
+}
+
+.batch-info-card h2 {
+  color: var(--temple-bronze);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.batch-schedule {
+  color: var(--temple-stone);
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+}
+
+.instruction {
+  color: var(--temple-bronze);
+  margin: 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.student-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid;
+  position: relative;
+}
+
+.student-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.status-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.student-card h3 {
+  color: var(--temple-bronze);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.status-text {
+  text-transform: capitalize;
+  font-weight: 600;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Status Colors */
+.status-present {
+  border-color: var(--accent-green);
+  background: rgba(122, 155, 118, 0.05);
+}
+
+.status-present .status-icon {
+  color: var(--accent-green);
+}
+
+.status-present .status-text {
+  color: var(--accent-green);
+}
+
+.status-absent {
+  border-color: var(--temple-light-stone);
+  background: rgba(212, 212, 212, 0.05);
+}
+
+.status-absent .status-icon {
+  color: var(--temple-stone);
+}
+
+.status-absent .status-text {
+  color: var(--temple-stone);
+}
+
+.status-late {
+  border-color: var(--accent-orange);
+  background: rgba(212, 148, 90, 0.05);
+}
+
+.status-late .status-icon {
+  color: var(--accent-orange);
+}
+
+.status-late .status-text {
+  color: var(--accent-orange);
+}
+
+.status-excused {
+  border-color: var(--accent-blue);
+  background: rgba(90, 127, 165, 0.05);
+}
+
+.status-excused .status-icon {
+  color: var(--accent-blue);
+}
+
+.status-excused .status-text {
+  color: var(--accent-blue);
+}
+
+/* Summary Section */
+.summary-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.summary-section h3 {
+  color: var(--temple-bronze);
+  margin: 0 0 1.5rem 0;
+  font-size: 1.3rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid;
+}
+
+.summary-card .count {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.summary-card .label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-card.present {
+  background: rgba(122, 155, 118, 0.1);
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.summary-card.absent {
+  background: rgba(212, 212, 212, 0.1);
+  border-color: var(--temple-light-stone);
+  color: var(--temple-stone);
+}
+
+.summary-card.late {
+  background: rgba(212, 148, 90, 0.1);
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+}
+
+.summary-card.excused {
+  background: rgba(90, 127, 165, 0.1);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.percentage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--temple-bronze);
+  font-weight: 600;
+  padding: 1rem;
+  background: var(--temple-cream);
+  border-radius: 8px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(201, 169, 97, 0.3);
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.loading {
+  color: var(--temple-gold);
+}
+
+.error {
+  color: var(--temple-bronze);
+}
+
+.no-batches {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.no-batches h2 {
+  color: var(--temple-bronze);
+  margin: 0 0 1rem 0;
+}
+
+.no-batches p {
+  color: var(--temple-stone);
+  margin: 0 0 2rem 0;
+}
+
+.btn-create {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--temple-gold);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-create:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .attendance-container {
+    padding: 0 1rem;
+  }
+
+  .attendance-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .btn-back {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .students-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-section {
+    padding: 1.5rem;
+  }
+}

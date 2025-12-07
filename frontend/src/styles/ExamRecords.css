@@ -1,0 +1,580 @@
+:root {
+  --temple-gold: #C9A961;
+  --temple-dark-gold: #B8935F;
+  --temple-bronze: #8B7355;
+  --temple-cream: #F5F1E8;
+  --temple-ivory: #FFFDF7;
+  --temple-stone: #6B6B6B;
+  --temple-light-stone: #D4D4D4;
+  --accent-green: #7A9B76;
+  --accent-blue: #5A7FA5;
+  --error-red: #C17A74;
+}
+
+.exam-records-page {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  background: var(--temple-ivory);
+  min-height: 100vh;
+}
+
+/* Header */
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--temple-cream);
+}
+
+.exam-header .header-content h1 {
+  color: var(--temple-bronze);
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.exam-header .subtitle {
+  color: var(--temple-stone);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.btn-back {
+  background: var(--temple-stone);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+/* Stats Section */
+.exam-stats-section {
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.75rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.8;
+}
+
+.stat-card.stat-primary {
+  background: linear-gradient(135deg, #f0e6d2 0%, #f5f1e8 100%);
+}
+
+.stat-card.stat-primary::before {
+  background: var(--temple-gold);
+}
+
+.stat-card.stat-success {
+  background: linear-gradient(135deg, #e8f2e8 0%, #f0f5f0 100%);
+}
+
+.stat-card.stat-success::before {
+  background: var(--accent-green);
+}
+
+.stat-card.stat-excellent {
+  background: linear-gradient(135deg, #fff4e6 0%, #fef9f3 100%);
+}
+
+.stat-card.stat-excellent::before {
+  background: #f59e0b;
+}
+
+.stat-card.stat-info {
+  background: linear-gradient(135deg, #e8f0f2 0%, #f0f4f5 100%);
+}
+
+.stat-card.stat-info::before {
+  background: var(--accent-blue);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+}
+
+.stat-card .stat-content {
+  flex: 1;
+}
+
+.stat-card .stat-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--temple-bronze);
+  margin: 0 0 0.25rem 0;
+  line-height: 1;
+}
+
+.stat-card .stat-label {
+  color: var(--temple-stone);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Filter Section */
+.exam-filters {
+  margin-bottom: 2rem;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: white;
+  color: var(--temple-stone);
+  border: 2px solid var(--temple-cream);
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--temple-gold);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--temple-gold);
+  color: white;
+  border-color: var(--temple-dark-gold);
+}
+
+/* Exam Records Content */
+.exam-records-content {
+  margin-bottom: 2rem;
+}
+
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Exam Card */
+.exam-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.exam-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.exam-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #fefdfb 0%, #faf9f6 100%);
+  border-bottom: 2px solid var(--temple-cream);
+}
+
+.exam-title-section {
+  flex: 1;
+}
+
+.exam-name {
+  color: var(--temple-bronze);
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 700;
+}
+
+.exam-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.exam-type-badge,
+.exam-level-badge {
+  background: var(--temple-cream);
+  color: var(--temple-bronze);
+  padding: 0.4rem 0.9rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.exam-level-badge {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.exam-date {
+  color: var(--temple-stone);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.exam-grade {
+  font-size: 2.5rem;
+  font-weight: 800;
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.grade-excellent {
+  background: linear-gradient(135deg, #e8f2e8 0%, #d4f0d4 100%);
+  color: #2d6a2d;
+}
+
+.grade-good {
+  background: linear-gradient(135deg, #e6f3ff 0%, #d4e9ff 100%);
+  color: #1e5a8e;
+}
+
+.grade-average {
+  background: linear-gradient(135deg, #fff4e6 0%, #ffe9cc 100%);
+  color: #b87333;
+}
+
+.grade-poor {
+  background: linear-gradient(135deg, #fef0ed 0%, #fce4e0 100%);
+  color: #c17a74;
+}
+
+.exam-card-body {
+  padding: 1.75rem;
+}
+
+/* Exam Scores */
+.exam-scores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--temple-cream);
+}
+
+.score-item label {
+  display: block;
+  color: var(--temple-stone);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--temple-bronze);
+}
+
+.score-value.percentage {
+  color: var(--temple-gold);
+}
+
+/* Components */
+.exam-components {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--temple-cream);
+  border-radius: 10px;
+}
+
+.exam-components h4 {
+  color: var(--temple-bronze);
+  font-size: 1.05rem;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.component-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 8px;
+  border-left: 3px solid var(--temple-gold);
+}
+
+.component-name {
+  color: var(--temple-stone);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.component-score {
+  color: var(--temple-bronze);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Remarks */
+.exam-remarks {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #fefdfb 0%, #faf9f6 100%);
+  border-radius: 10px;
+  border-left: 4px solid var(--temple-gold);
+}
+
+.exam-remarks h4 {
+  color: var(--temple-bronze);
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.exam-remarks p {
+  color: var(--temple-stone);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Feedback */
+.exam-feedback {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.feedback-section {
+  padding: 1.25rem;
+  border-radius: 10px;
+}
+
+.feedback-section h4 {
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.feedback-section p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.feedback-section.strengths {
+  background: linear-gradient(135deg, #e8f2e8 0%, #f0f5f0 100%);
+  border-left: 4px solid var(--accent-green);
+}
+
+.feedback-section.strengths h4 {
+  color: var(--accent-green);
+}
+
+.feedback-section.strengths p {
+  color: #2d6a2d;
+}
+
+.feedback-section.improvements {
+  background: linear-gradient(135deg, #e8f0f2 0%, #f0f4f5 100%);
+  border-left: 4px solid var(--accent-blue);
+}
+
+.feedback-section.improvements h4 {
+  color: var(--accent-blue);
+}
+
+.feedback-section.improvements p {
+  color: #1e5a8e;
+}
+
+/* Actions */
+.exam-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-view-marksheet,
+.btn-view-certificate,
+.btn-details {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-view-marksheet {
+  background: var(--temple-gold);
+  color: white;
+}
+
+.btn-view-marksheet:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+.btn-view-certificate {
+  background: var(--accent-green);
+  color: white;
+}
+
+.btn-view-certificate:hover {
+  background: #6a8b66;
+  transform: translateY(-2px);
+}
+
+.btn-details {
+  background: var(--temple-cream);
+  color: var(--temple-bronze);
+}
+
+.btn-details:hover {
+  background: var(--temple-light-stone);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 12px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  color: var(--temple-bronze);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+  color: var(--temple-stone);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Loading State */
+.loading-state {
+  text-align: center;
+  padding: 4rem;
+  color: var(--temple-gold);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .exam-records-page {
+    padding: 0 1rem;
+  }
+
+  .exam-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .exam-card-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .exam-grade {
+    align-self: flex-start;
+  }
+
+  .exam-scores {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .exam-feedback {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-actions {
+    flex-direction: column;
+  }
+
+  .btn-view-marksheet,
+  .btn-view-certificate,
+  .btn-details {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
