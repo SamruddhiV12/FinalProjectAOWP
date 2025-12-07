@@ -1,0 +1,10 @@
+{
+  "name": "sda-prototype",
+  "private": true,
+  "scripts": {
+    "start:backend": "npm start --prefix backend",
+    "start:frontend": "npm start --prefix frontend",
+    "start:all": "sh -c \"npm start --prefix backend >/tmp/sda-backend.log 2>&1 & npm start --prefix frontend >/tmp/sda-frontend.log 2>&1 &\"",
+    "stop:all": "pkill -f \"node server.js\" || true; pkill -f \"react-scripts start\" || true"
+  }
+}

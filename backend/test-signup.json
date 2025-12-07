@@ -1,0 +1,17 @@
+{
+  "firstName": "Test",
+  "lastName": "Student",
+  "email": "test@sda.com",
+  "password": "password123",
+  "phone": "9876543210",
+  "dateOfBirth": "2005-01-15",
+  "gender": "Female",
+  "address": "123 Dance Street",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "pincode": "400001",
+  "emergencyContactName": "Parent Name",
+  "emergencyContactPhone": "9876543211",
+  "emergencyContactRelation": "Mother",
+  "preferredBatch": "intermediate"
+}
