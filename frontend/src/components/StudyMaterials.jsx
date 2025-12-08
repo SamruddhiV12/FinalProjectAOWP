@@ -39,7 +39,7 @@ function StudyMaterials({ user }) {
 
   const fetchMaterials = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/materials', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/materials`, {
         headers: authHeaders(),
       });
       const data = await res.json();
@@ -55,7 +55,7 @@ function StudyMaterials({ user }) {
 
   const fetchBatches = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/batches?isActive=true', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/batches?isActive=true`, {
         headers: authHeaders(),
       });
       const data = await res.json();
@@ -171,7 +171,7 @@ function StudyMaterials({ user }) {
     setUploading(true);
 
     try {
-      const res = await fetch('http://localhost:5001/api/materials', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/materials`, {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify({
@@ -214,7 +214,7 @@ function StudyMaterials({ user }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:5001/api/materials/${materialId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/materials/${materialId}`, {
         method: 'DELETE',
         headers: authHeaders(),
       });
@@ -234,7 +234,7 @@ function StudyMaterials({ user }) {
 
   const handleDownload = async (material) => {
     try {
-      await fetch(`http://localhost:5001/api/materials/${material._id}/download`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/materials/${material._id}/download`, {
         method: 'PATCH',
         headers: authHeaders(),
       });

@@ -36,7 +36,7 @@ function AdminPayments() {
   const fetchBatches = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:5001/api/batches?isActive=true', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/batches?isActive=true`, {
         headers: authHeaders(),
       });
       const data = await res.json();
@@ -60,7 +60,7 @@ function AdminPayments() {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:5001/api/payments/batch-view?batchId=${batchId}&month=${month}`,
+        `${process.env.REACT_APP_API_URL}/api/payments/batch-view?batchId=${batchId}&month=${month}`,
         { headers: authHeaders() }
       );
       const data = await res.json();
@@ -83,7 +83,7 @@ function AdminPayments() {
   const upsertPayment = async ({ studentId, amount, status }) => {
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5001/api/payments', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/payments`, {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify({
@@ -159,7 +159,7 @@ function AdminPayments() {
     }
     try {
       setSaving(true);
-      const res = await fetch(`http://localhost:5001/api/batches/${batchInfo.id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/batches/${batchInfo.id}`, {
         method: 'PUT',
         headers: authHeaders(),
         body: JSON.stringify({ monthlyFee: value }),

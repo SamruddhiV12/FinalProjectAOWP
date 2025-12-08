@@ -15,7 +15,7 @@ function StudentSchedule({ user }) {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        'http://localhost:5001/api/class-schedules?published=true',
+        `${process.env.REACT_APP_API_URL}/api/class-schedules?published=true`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
