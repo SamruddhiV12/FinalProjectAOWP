@@ -2,13 +2,14 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 
 // Load environment variables
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
+// Attempt initial Mongo connection (non-blocking for serverless)
+connectDB().catch((err) => console.error('Initial Mongo connection failed:', err.message));
 
 // Initialize Express app
 const app = express();
@@ -25,6 +26,19 @@ app.use(
     credentials: true,
   })
 );
+
+// Ensure DB connection per request (helps in serverless cold starts)
+app.use(async (req, res, next) => {
+  try {
+    if (mongoose.connection.readyState !== 1) {
+      await connectDB();
+    }
+    next();
+  } catch (err) {
+    console.error('Mongo connection error:', err.message);
+    return res.status(500).json({ success: false, message: 'Database connection failed' });
+  }
+});
 
 // Logging middleware (only in development)
 if (process.env.NODE_ENV === 'development') {
@@ -52,6 +66,8 @@ app.get('/api/health', (req, res) => {
     status: 'ok',
     env: process.env.NODE_ENV || 'development',
     vercel: !!process.env.VERCEL,
+    mongoConnected: mongoose.connection.readyState === 1,
+    hasMongoUri: !!process.env.MONGODB_URI,
   });
 });
 
