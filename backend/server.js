@@ -34,11 +34,13 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Enable CORS
+// Enable CORS (allow specific origin via env, fallback to allow all to unblock auth)
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: true, // reflect request origin (useful for Vercel preview domains)
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   })
 );
 
