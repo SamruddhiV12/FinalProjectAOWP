@@ -4,7 +4,11 @@ const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 
-const uploadDir = path.join(__dirname, '..', 'uploads', 'materials');
+const isVercel = !!process.env.VERCEL;
+const uploadDir = isVercel
+  ? path.join('/tmp', 'uploads', 'materials')
+  : path.join(__dirname, '..', 'uploads', 'materials');
+
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -234,7 +238,8 @@ module.exports = {
       if (!req.file) {
         return res.status(400).json({ success: false, message: 'No file uploaded' });
       }
-      const fileUrl = `${req.protocol}://${req.get('host')}/uploads/materials/${req.file.filename}`;
+      const fileBase = isVercel ? '/tmp-materials' : '/uploads/materials';
+      const fileUrl = `${req.protocol}://${req.get('host')}${fileBase}/${req.file.filename}`;
       return res.status(200).json({
         success: true,
         data: {

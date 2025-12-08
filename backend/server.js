@@ -18,6 +18,10 @@ const app = express();
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use('/uploads', express.static('uploads'));
+// Serve temporary upload dir on Vercel (non-persistent)
+if (process.env.VERCEL) {
+  app.use('/tmp-materials', express.static('/tmp/uploads/materials'));
+}
 
 // Simple health before DB middleware to avoid crashing on connection issues
 app.get('/api/health', (req, res) => {
