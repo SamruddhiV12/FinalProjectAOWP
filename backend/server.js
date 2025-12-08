@@ -45,6 +45,16 @@ app.use('/api/exams', require('./routes/exams'));
 app.use('/api/assignments', require('./routes/assignments'));
 app.use('/api/tasks', require('./routes/tasks'));
 
+// Health check for deployments
+app.get('/api/health', (req, res) => {
+  res.json({
+    success: true,
+    status: 'ok',
+    env: process.env.NODE_ENV || 'development',
+    vercel: !!process.env.VERCEL,
+  });
+});
+
 // Root route
 app.get('/', (req, res) => {
   res.json({
