@@ -27,7 +27,22 @@ const apiCall = async (endpoint, options = {}) => {
       },
     });
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    let data;
+    try {
+      if (contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        if (text) {
+          throw new Error(text);
+        }
+        throw new Error(`Unexpected empty response (status ${response.status})`);
+      }
+    } catch (parseErr) {
+      console.error('API parse error:', parseErr);
+      throw new Error(`Failed to parse response (status ${response.status})`);
+    }
 
     if (!response.ok) {
       throw new Error(data.message || 'Something went wrong');
