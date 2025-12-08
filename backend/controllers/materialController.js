@@ -1,5 +1,26 @@
 const Material = require('../models/Material');
 const Batch = require('../models/Batch');
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+
+const uploadDir = path.join(__dirname, '..', 'uploads', 'materials');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    const safeName = file.originalname.replace(/\s+/g, '-');
+    const unique = `${Date.now()}-${safeName}`;
+    cb(null, unique);
+  }
+});
+
+const upload = multer({ storage });
 
 // @desc    Get materials (students see only their batch materials, admin sees all)
 // @route   GET /api/materials
@@ -206,4 +227,26 @@ module.exports = {
   updateMaterial,
   deleteMaterial,
   trackDownload,
+  upload,
+  // Upload file and return URL + metadata
+  uploadMaterialFile: async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ success: false, message: 'No file uploaded' });
+      }
+      const fileUrl = `${req.protocol}://${req.get('host')}/uploads/materials/${req.file.filename}`;
+      return res.status(200).json({
+        success: true,
+        data: {
+          fileUrl,
+          fileName: req.file.originalname,
+          fileSize: req.file.size,
+          fileType: req.file.mimetype
+        }
+      });
+    } catch (error) {
+      console.error('Upload file error:', error);
+      return res.status(500).json({ success: false, message: 'Error uploading file' });
+    }
+  }
 };

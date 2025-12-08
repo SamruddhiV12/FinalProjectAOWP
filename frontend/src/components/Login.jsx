@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
 import fullLogo from '../assets/images/full-logo-sda.jpeg';
 
@@ -45,6 +46,30 @@ function Login({ onLogin }) {
       justifyContent: 'center',
       padding: '2rem',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif'
+    },
+    topBar: {
+      position: 'fixed',
+      top: '0.75rem',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.6rem',
+      padding: '0.5rem 0.75rem',
+      borderRadius: '999px',
+      background: 'rgba(255, 253, 247, 0.9)',
+      boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
+      border: '1px solid #e8e4d8',
+      zIndex: 5
+    },
+    backLink: {
+      textDecoration: 'none',
+      color: '#8B7355',
+      fontWeight: 700,
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.35rem',
+      fontSize: '0.95rem'
     },
     card: {
       background: 'white',
@@ -165,6 +190,10 @@ function Login({ onLogin }) {
 
   return (
     <div style={styles.container}>
+      <div style={styles.topBar}>
+        <img src={fullLogo} alt="SDA" style={{ height: '32px', width: '32px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #C9A961' }} />
+        <Link to="/" style={styles.backLink}>← Back to Landing</Link>
+      </div>
       <div style={styles.card}>
         <div style={styles.logoContainer}>
           <img src={fullLogo} alt="SDA Logo" style={styles.logo} />
@@ -231,9 +260,6 @@ function Login({ onLogin }) {
         </form>
 
         <div style={styles.demo}>
-          <p style={styles.demoTitle}>Demo Credentials</p>
-          <p style={styles.demoItem}>🎓 Student: test@sda.com / password123</p>
-          <p style={styles.demoItem}>👨‍🏫 Admin: admin@sda.com / admin123</p>
           <p style={styles.demoNote}>
             New students can register using the signup page
           </p>

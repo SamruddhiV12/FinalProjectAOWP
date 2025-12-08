@@ -1,15 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGES } from '../constants/images';
+import SharedNav from './SharedNav';
+import introImg from '../assets/images/image2.jpeg';
+import founderImg from '../assets/images/image3.jpg';
+import heroImg from '../assets/images/image1.jpg';
+import heritageImg1 from '../assets/images/image4.jpeg';
+import heritageImg2 from '../assets/images/image6.jpeg';
+import templeMain from '../assets/images/image1.jpg';
+import templeDetail from '../assets/images/image2.jpeg';
 import '../styles/About.css';
 
 const About = () => {
   return (
     <div className="about-page">
+      <SharedNav />
+
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero-overlay"></div>
-        <img src={IMAGES.temple.main} alt="Chidambaram Temple" className="about-hero-bg" />
+        <img src={heroImg} alt="Academy showcase" className="about-hero-bg" />
         <div className="about-hero-content">
           <h1>Our Story</h1>
           <p>Preserving the Divine Art of Bharatanatyam</p>
@@ -21,7 +30,7 @@ const About = () => {
         <div className="about-container">
           <div className="intro-grid">
             <div className="intro-image">
-              <img src={IMAGES.bharatanatyam.pose1} alt="Bharatanatyam Performance" />
+              <img src={introImg} alt="Bharatanatyam Performance" />
               <div className="intro-image-decoration"></div>
             </div>
             <div className="intro-content">
@@ -72,25 +81,25 @@ const About = () => {
               </p>
               <div className="founder-achievements">
                 <div className="achievement-item">
-                  <span className="achievement-icon">🏆</span>
+                  <div className="achievement-marker"></div>
                   <p>Natya Visharada Certification</p>
                 </div>
                 <div className="achievement-item">
-                  <span className="achievement-icon">🎭</span>
+                  <div className="achievement-marker"></div>
                   <p>100+ Stage Performances</p>
                 </div>
                 <div className="achievement-item">
-                  <span className="achievement-icon">👥</span>
+                  <div className="achievement-marker"></div>
                   <p>500+ Students Trained</p>
                 </div>
                 <div className="achievement-item">
-                  <span className="achievement-icon">📜</span>
+                  <div className="achievement-marker"></div>
                   <p>Certified by Sangeet Natak Akademi</p>
                 </div>
               </div>
             </div>
             <div className="founder-image">
-              <img src={IMAGES.bharatanatyam.pose2} alt="Guru Samruddhi" />
+              <img src={founderImg} alt="Guru Samruddhi" />
               <div className="founder-quote">
                 <p>"Dance is the hidden language of the soul. Through Bharatanatyam, we speak to the divine."</p>
                 <span>— Guru Samruddhi</span>
@@ -111,7 +120,7 @@ const About = () => {
 
           <div className="heritage-grid">
             <div className="heritage-card">
-              <img src={IMAGES.temple.nataraja1} alt="Lord Nataraja" />
+              <img src={heritageImg1} alt="Lord Nataraja" />
               <h3>Divine Origins</h3>
               <p>
                 Rooted in the cosmic dance of Lord Shiva (Nataraja), Bharatanatyam embodies
@@ -121,7 +130,7 @@ const About = () => {
             </div>
 
             <div className="heritage-card">
-              <img src={IMAGES.temple.architecture} alt="Temple Architecture" />
+              <img src={heritageImg2} alt="Temple Architecture" />
               <h3>Temple Tradition</h3>
               <p>
                 Originally performed in temple sanctums as offerings to deities, this sacred
@@ -130,7 +139,7 @@ const About = () => {
             </div>
 
             <div className="heritage-card">
-              <img src={IMAGES.bharatanatyam.mudra1} alt="Mudras" />
+              <img src={introImg} alt="Mudras" />
               <h3>Language of Gestures</h3>
               <p>
                 Bharatanatyam uses 108 Karanas (basic dance units) and countless Mudras
@@ -139,7 +148,7 @@ const About = () => {
             </div>
 
             <div className="heritage-card">
-              <img src={IMAGES.cultural.mridangam} alt="Mridangam" />
+              <img src={founderImg} alt="Mridangam" />
               <h3>Rhythm & Music</h3>
               <p>
                 Accompanied by Carnatic music, the Mridangam drum, and soulful vocals,
@@ -173,8 +182,8 @@ const About = () => {
               </p>
             </div>
             <div className="chidambaram-images">
-              <img src={IMAGES.temple.gopuram} alt="Temple Gopuram" className="temple-img-main" />
-              <img src={IMAGES.temple.pillars} alt="Temple Pillars" className="temple-img-small" />
+              <img src={templeMain} alt="Temple Gopuram" className="temple-img-main" />
+              <img src={templeDetail} alt="Temple Pillars" className="temple-img-small" />
             </div>
           </div>
         </div>
@@ -186,37 +195,37 @@ const About = () => {
           <h2>Our Core Values</h2>
           <div className="values-grid">
             <div className="value-card">
-              <div className="value-icon">🙏</div>
+              <div className="value-marker"></div>
               <h3>Tradition with Reverence</h3>
               <p>We honor the classical Margam repertoire and ancient texts like the Natyashastra while adapting to contemporary teaching methods.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">🌟</div>
+              <div className="value-marker"></div>
               <h3>Excellence in Technique</h3>
               <p>From Aramandi (half-sitting posture) to intricate Jathis, we ensure every student masters the fundamentals with precision.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">💖</div>
+              <div className="value-marker"></div>
               <h3>Expressive Abhinaya</h3>
               <p>Beyond steps, we teach Rasa (emotion) and Bhava (expression), helping dancers connect emotionally with their performances.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">🌍</div>
+              <div className="value-marker"></div>
               <h3>Cultural Ambassadors</h3>
               <p>Our students represent Indian classical arts in schools, festivals, and international stages, spreading the beauty of Bharatanatyam.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">👨‍👩‍👧‍👦</div>
+              <div className="value-marker"></div>
               <h3>Inclusive Community</h3>
               <p>We welcome students of all ages, backgrounds, and abilities, fostering a supportive family atmosphere.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">📈</div>
+              <div className="value-marker"></div>
               <h3>Continuous Growth</h3>
               <p>Through regular assessments, workshops with guest artists, and performance opportunities, we ensure constant progress.</p>
             </div>

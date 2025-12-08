@@ -1,0 +1,600 @@
+:root {
+  --temple-gold: #C9A961;
+  --temple-dark-gold: #B8935F;
+  --temple-bronze: #8B7355;
+  --temple-cream: #F5F1E8;
+  --temple-ivory: #FFFDF7;
+  --temple-stone: #6B6B6B;
+  --temple-light-stone: #D4D4D4;
+  --accent-blue: #5A7FA5;
+  --accent-orange: #D4945A;
+  --accent-green: #7A9B76;
+}
+
+.batch-management-container {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.batch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.batch-header h1 {
+  color: var(--temple-bronze);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-create-batch {
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-create-batch:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+}
+
+.btn-back {
+  background: var(--temple-stone);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid;
+}
+
+.stat-card.total {
+  border-color: var(--temple-bronze);
+}
+
+.stat-card.basic {
+  border-color: var(--accent-blue);
+}
+
+.stat-card.intermediate {
+  border-color: var(--accent-orange);
+}
+
+.stat-card.advanced {
+  border-color: var(--accent-green);
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--temple-bronze);
+}
+
+.stat-card p {
+  margin: 0;
+  color: var(--temple-stone);
+  font-size: 0.95rem;
+}
+
+/* Filters */
+.batch-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.batch-filters button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--temple-light-stone);
+  background: white;
+  color: var(--temple-stone);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.batch-filters button:hover {
+  border-color: var(--temple-gold);
+  color: var(--temple-bronze);
+}
+
+.batch-filters button.active {
+  background: var(--temple-gold);
+  color: white;
+  border-color: var(--temple-gold);
+}
+
+/* Batches Grid */
+.batches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.batch-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.batch-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.batch-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--temple-cream);
+}
+
+.batch-card-header h3 {
+  margin: 0;
+  color: var(--temple-bronze);
+  font-size: 1.3rem;
+}
+
+.level-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.level-badge.basic {
+  background: rgba(90, 127, 165, 0.15);
+  color: var(--accent-blue);
+}
+
+.level-badge.intermediate {
+  background: rgba(212, 148, 90, 0.15);
+  color: var(--accent-orange);
+}
+
+.level-badge.advanced {
+  background: rgba(122, 155, 118, 0.15);
+  color: var(--accent-green);
+}
+
+.batch-info {
+  margin-bottom: 1.5rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--temple-cream);
+}
+
+.info-row .label {
+  color: var(--temple-stone);
+  font-size: 0.9rem;
+}
+
+.info-row .value {
+  color: var(--temple-bronze);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.batch-students {
+  margin-bottom: 1rem;
+}
+
+.batch-students h4 {
+  color: var(--temple-bronze);
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+}
+
+.batch-students ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.batch-students li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: var(--temple-cream);
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+}
+
+.batch-students li span {
+  color: var(--temple-bronze);
+  font-size: 0.9rem;
+}
+
+.btn-remove-student {
+  background: transparent;
+  border: none;
+  color: var(--temple-stone);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.btn-remove-student:hover {
+  background: rgba(139, 115, 85, 0.1);
+  color: var(--temple-bronze);
+}
+
+.no-students {
+  color: var(--temple-stone);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.batch-actions {
+  margin-top: 1rem;
+}
+
+.btn-add-student {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-add-student:hover:not(:disabled) {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+.btn-add-student:disabled {
+  background: var(--temple-light-stone);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.no-batches {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: var(--temple-stone);
+  font-size: 1.1rem;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--temple-cream);
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: var(--temple-bronze);
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--temple-stone);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.btn-close:hover {
+  background: var(--temple-cream);
+  color: var(--temple-bronze);
+}
+
+/* Form */
+form {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--temple-bronze);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--temple-light-stone);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--temple-gold);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.days-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--temple-cream);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--temple-bronze);
+}
+
+.checkbox-label:hover {
+  background: var(--temple-gold);
+  color: white;
+}
+
+.checkbox-label input[type='checkbox'] {
+  width: auto;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-submit {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: var(--temple-stone);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+/* Student List in Modal */
+.student-list ul {
+  list-style: none;
+  padding: 1.5rem;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--temple-cream);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.student-item:hover {
+  background: var(--temple-ivory);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.student-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.student-name {
+  color: var(--temple-bronze);
+  font-weight: 600;
+}
+
+.student-email {
+  color: var(--temple-stone);
+  font-size: 0.85rem;
+}
+
+.btn-add {
+  padding: 0.5rem 1.5rem;
+  background: var(--temple-gold);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add:hover {
+  background: var(--temple-dark-gold);
+  transform: translateY(-2px);
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.loading {
+  color: var(--temple-gold);
+}
+
+.error {
+  color: var(--temple-bronze);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .batch-management-container {
+    padding: 0 1rem;
+  }
+
+  .batch-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .btn-create-batch,
+  .btn-back {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .batch-filters {
+    flex-wrap: wrap;
+  }
+
+  .batches-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}

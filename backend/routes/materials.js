@@ -7,6 +7,8 @@ const {
   updateMaterial,
   deleteMaterial,
   trackDownload,
+  upload,
+  uploadMaterialFile,
 } = require('../controllers/materialController');
 
 // Get materials (students see their batch materials, admin sees all)
@@ -14,6 +16,8 @@ router.get('/', protect, getMaterials);
 
 // Upload material (admin only)
 router.post('/', protect, adminOnly, uploadMaterial);
+// Upload file asset (admin only)
+router.post('/upload', protect, adminOnly, upload.single('file'), uploadMaterialFile);
 
 // Update material (admin only)
 router.put('/:id', protect, adminOnly, updateMaterial);

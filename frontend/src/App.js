@@ -22,6 +22,8 @@ import AdminPayments from './components/AdminPayments';
 import AdminNotifications from './components/AdminNotifications';
 import StudentProfile from './components/StudentProfile';
 import ExamRecords from './components/ExamRecords';
+import AdminTasks from './components/AdminTasks';
+import AdminFeedback from './components/AdminFeedback';
 import Navbar from './components/Navbar';
 import { authAPI } from './services/api';
 import './App.css';
@@ -105,6 +107,8 @@ function App() {
           <Route path="/classes" element={user?.role === 'admin' ? <ClassManagement user={user} /> : <Navigate to="/login" />} />
           <Route path="/admin/payments" element={user?.role === 'admin' ? <AdminPayments /> : <Navigate to="/login" />} />
           <Route path="/admin/notifications" element={user?.role === 'admin' ? <AdminNotifications /> : <Navigate to="/login" />} />
+          <Route path="/admin/tasks" element={user?.role === 'admin' ? <AdminTasks /> : <Navigate to="/login" />} />
+          <Route path="/admin/feedback" element={user?.role === 'admin' ? <AdminFeedback /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>

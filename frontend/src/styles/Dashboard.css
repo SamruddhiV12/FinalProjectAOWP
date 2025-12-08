@@ -213,9 +213,132 @@
   transform: scaleX(1);
 }
 
+.action-card-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f5f1e8 0%, #ede5d8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card-icon-wrapper::before,
+.action-card-icon-wrapper::after {
+  content: none !important;
+  display: none !important;
+}
+
+.action-card-icon-wrapper * {
+  font-family: inherit;
+  text-rendering: geometricPrecision;
+}
+
+/* Force remove any default content */
+span.action-card-icon::before,
+span.action-card-icon::after,
+div.action-card-icon-wrapper > span::before,
+div.action-card-icon-wrapper > span::after {
+  content: "" !important;
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.action-card:hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #C9A961 0%, #B8935F 100%);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(201, 169, 97, 0.25);
+}
+
 .action-card-icon {
-  font-size: 2.25rem;
-  margin-bottom: 0.85rem;
+  width: 26px !important;
+  height: 26px !important;
+  color: var(--temple-bronze);
+  transition: all 0.3s ease;
+  stroke-width: 2;
+  display: block;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.action-card-icon::before,
+.action-card-icon::after {
+  content: none !important;
+  display: none !important;
+}
+
+.action-card:hover .action-card-icon {
+  color: white;
+}
+
+/* Subtle color variations for different action cards */
+.action-card:nth-child(1) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #e8f0f2 0%, #d8e5e8 100%);
+}
+
+.action-card:nth-child(1):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #5A7FA5 0%, #4a6f95 100%);
+}
+
+.action-card:nth-child(2) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #e8f2e8 0%, #d8e5d8 100%);
+}
+
+.action-card:nth-child(2):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #7A9B76 0%, #6a8b66 100%);
+}
+
+.action-card:nth-child(3) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #fef0ed 0%, #ede0dd 100%);
+}
+
+.action-card:nth-child(3):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #C17A74 0%, #b16a64 100%);
+}
+
+.action-card:nth-child(4) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #f0e6f2 0%, #e0d6e8 100%);
+}
+
+.action-card:nth-child(4):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #9B7AA5 0%, #8b6a95 100%);
+}
+
+.action-card:nth-child(5) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #f5f1e8 0%, #e5e1d8 100%);
+}
+
+.action-card:nth-child(5):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #C9A961 0%, #B8935F 100%);
+}
+
+.action-card:nth-child(6) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #e8f0f2 0%, #d8e5e8 100%);
+}
+
+.action-card:nth-child(6):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #5A7FA5 0%, #4a6f95 100%);
+}
+
+.action-card:nth-child(7) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #e8f2e8 0%, #d8e5d8 100%);
+}
+
+.action-card:nth-child(7):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #7A9B76 0%, #6a8b66 100%);
+}
+
+.action-card:nth-child(8) .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #fef0ed 0%, #ede0dd 100%);
+}
+
+.action-card:nth-child(8):hover .action-card-icon-wrapper {
+  background: linear-gradient(135deg, #C17A74 0%, #b16a64 100%);
 }
 
 .action-card-title {

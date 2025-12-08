@@ -19,7 +19,11 @@ function StudyMaterials({ user }) {
   const [isPublic, setIsPublic] = useState(false);
   const [fileUrl, setFileUrl] = useState('');
   const [fileName, setFileName] = useState('');
-  const [fileType, setFileType] = useState('');
+  const [fileType, setFileType] = useState('pdf');
+  const [fileSize, setFileSize] = useState(0);
+  const [uploadingFile, setUploadingFile] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [useFileUpload, setUseFileUpload] = useState(true);
 
   useEffect(() => {
     fetchMaterials();
@@ -64,6 +68,7 @@ function StudyMaterials({ user }) {
   };
 
   const categories = ['All', 'Theory', 'Practice Videos', 'Exam Prep', 'Reference', 'Other'];
+  const fileTypes = ['pdf', 'video', 'audio', 'image', 'link', 'doc'];
 
   const filteredMaterials =
     selectedCategory === 'All'
@@ -86,12 +91,75 @@ function StudyMaterials({ user }) {
     setSelectedBatches([]);
   };
 
+  const uploadFile = async (file) => {
+    setSelectedFile(file);
+    setUploadingFile(true);
+    setStatusMessage('Uploading file...');
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/materials/upload`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFileUrl(data.data.fileUrl);
+        setFileName(data.data.fileName);
+        setFileSize(data.data.fileSize || 0);
+        const mime = data.data.fileType || '';
+        if (mime.includes('pdf')) setFileType('pdf');
+        else if (mime.includes('video')) setFileType('video');
+        else if (mime.includes('audio')) setFileType('audio');
+        else if (mime.includes('image')) setFileType('image');
+        else setFileType('doc');
+        setStatusMessage('✓ File uploaded. You can now save the material.');
+        setUseFileUpload(true);
+      } else {
+        setStatusMessage(`⚠️ ${data.message || 'Upload failed'}`);
+        setFileUrl('');
+      }
+    } catch (err) {
+      console.error('File upload error:', err);
+      setStatusMessage('⚠️ File upload failed');
+      setFileUrl('');
+    } finally {
+      setUploadingFile(false);
+    }
+  };
+
+  const handleFileSelect = (e) => {
+    const file = e.target.files?.[0];
+    if (file) uploadFile(file);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) uploadFile(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
   const handleUpload = async (e) => {
     e.preventDefault();
     setStatusMessage('');
 
-    if (!title.trim() || !fileUrl.trim() || !fileName.trim()) {
+    if (!title.trim() || !fileName.trim()) {
       setStatusMessage('⚠️ Please fill in all required fields');
+      return;
+    }
+
+    if (useFileUpload && !fileUrl.trim()) {
+      setStatusMessage('⚠️ Please upload a file first.');
+      return;
+    }
+
+    if (!useFileUpload && !fileUrl.trim()) {
+      setStatusMessage('⚠️ Please provide a link for this material.');
       return;
     }
 
@@ -113,6 +181,7 @@ function StudyMaterials({ user }) {
           fileUrl,
           fileName,
           fileType,
+          fileSize,
           batchIds: selectedBatches,
           isPublic,
         }),
@@ -200,7 +269,7 @@ function StudyMaterials({ user }) {
     <div className="materials-page">
       <div className="materials-header">
         <div>
-          <h1>📚 Study Materials</h1>
+          <h1>Study Materials</h1>
           <p className="materials-subtitle">
             {user.role === 'admin'
               ? 'Upload and manage study materials for your batches'
@@ -229,6 +298,29 @@ function StudyMaterials({ user }) {
       {user.role === 'admin' && uploadMode && (
         <div className="upload-section">
           <h2>Upload New Material</h2>
+
+          <div
+            className="upload-dropzone"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onClick={() => document.getElementById('file-picker').click()}
+          >
+            <div className="upload-icon">☁️</div>
+            <p>Drag and drop a file here or <span className="upload-link">browse</span></p>
+            <input
+              id="file-picker"
+              type="file"
+              style={{ display: 'none' }}
+              onChange={handleFileSelect}
+            />
+            {selectedFile && (
+              <div className="upload-file-info">
+                <span>{selectedFile.name}</span>
+                <span>{uploadingFile ? 'Uploading...' : 'Ready'}</span>
+              </div>
+            )}
+          </div>
+
           <form onSubmit={handleUpload} className="upload-form">
             <div className="form-row">
               <div className="form-group full-width">
@@ -257,13 +349,26 @@ function StudyMaterials({ user }) {
 
               <div className="form-group">
                 <label>File Type *</label>
-                <select value={fileType} onChange={(e) => setFileType(e.target.value)} required>
-                  <option value="">Select type...</option>
-                  <option value="PDF">PDF</option>
-                  <option value="Video">Video</option>
-                  <option value="Audio">Audio</option>
-                  <option value="Document">Document</option>
-                  <option value="Other">Other</option>
+                <select
+                  value={fileType}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setFileType(val);
+                    setUseFileUpload(val !== 'link');
+                    if (val === 'link') {
+                      setSelectedFile(null);
+                      setFileUrl('');
+                    }
+                  }}
+                  required
+                >
+                  <option value="pdf">PDF</option>
+                  <option value="video">Video</option>
+                  <option value="audio">Audio</option>
+                  <option value="image">Image</option>
+                  <option value="link">Link</option>
+                  <option value="doc">Document</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>
@@ -280,15 +385,30 @@ function StudyMaterials({ user }) {
 
             <div className="form-row">
               <div className="form-group">
-                <label>File URL *</label>
-                <input
-                  type="text"
-                  value={fileUrl}
-                  onChange={(e) => setFileUrl(e.target.value)}
-                  placeholder="https://drive.google.com/file/... or https://youtu.be/..."
-                  required
-                />
-                <small className="form-hint">Google Drive, YouTube, or direct file link</small>
+                <label>{useFileUpload ? 'File Upload *' : 'File URL *'}</label>
+                {useFileUpload ? (
+                  <>
+                    <input type="file" onChange={handleFileSelect} disabled={uploadingFile} />
+                    <small className="form-hint">Choose a file from your device.</small>
+                    {uploadingFile && <small className="form-hint" style={{ color: '#c9a961' }}>Uploading...</small>}
+                    {fileUrl && !uploadingFile && (
+                      <small className="form-hint" style={{ color: '#4b5563' }}>
+                        Uploaded URL: {fileUrl}
+                      </small>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      value={fileUrl}
+                      onChange={(e) => setFileUrl(e.target.value)}
+                      placeholder="https://drive.google.com/file/... or https://youtu.be/..."
+                      required
+                    />
+                    <small className="form-hint">Provide a link for this material.</small>
+                  </>
+                )}
               </div>
 
               <div className="form-group">

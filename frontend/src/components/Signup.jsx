@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { IMAGES } from '../constants/images';
 import { authAPI } from '../services/api';
+import fullLogo from '../assets/images/full-logo-sda.jpeg';
 import '../styles/Signup.css';
 
 const Signup = () => {
@@ -580,6 +581,13 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
+      <div className="auth-top-nav">
+        <div className="auth-brand">
+          <img src={fullLogo} alt="SDA" className="auth-logo" />
+          <span>Samruddhi's Dance Academy</span>
+        </div>
+        <Link to="/" className="auth-back-link">← Back to Landing</Link>
+      </div>
       <div className="signup-background">
         <img src={IMAGES.temple.main} alt="Background" />
       </div>

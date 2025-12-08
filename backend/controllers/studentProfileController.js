@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const User = require('../models/User');
 const Batch = require('../models/Batch');
 
@@ -135,30 +136,47 @@ exports.getStudentStats = async (req, res) => {
 
     // Get additional stats from related collections
     const Attendance = require('../models/Attendance');
-    const Assignment = require('../models/Assignment');
+    const AssignmentSubmission = require('../models/AssignmentSubmission');
     const Exam = require('../models/Exam');
 
-    const attendanceCount = await Attendance.countDocuments({
+    // Aggregate attendance per student across all records
+    const attendanceAgg = await Attendance.aggregate([
+      { $match: { 'records.student': new mongoose.Types.ObjectId(studentId) } },
+      { $unwind: '$records' },
+      { $match: { 'records.student': new mongoose.Types.ObjectId(studentId) } },
+      {
+        $group: {
+          _id: null,
+          totalClasses: { $sum: 1 },
+          presentCount: {
+            $sum: {
+              $cond: [
+                { $in: ['$records.status', ['present', 'late']] },
+                1,
+                0,
+              ],
+            },
+          },
+        },
+      },
+    ]);
+
+    const totalClasses = attendanceAgg[0]?.totalClasses || 0;
+    const attendanceCount = attendanceAgg[0]?.presentCount || 0;
+
+    // Count submitted assignments
+    const assignmentsCompleted = await AssignmentSubmission.countDocuments({
       student: studentId,
-      status: 'Present',
+      status: { $in: ['Submitted', 'Graded'] },
     });
 
-    const totalClasses = await Attendance.countDocuments({
-      student: studentId,
-    });
-
-    const assignmentsCompleted = await Assignment.countDocuments({
-      student: studentId,
-      status: 'Submitted',
-    });
-
+    // Count completed exams (exams where student has a record)
     const examsGiven = await Exam.countDocuments({
-      student: studentId,
-      status: 'Published',
+      'students.student': studentId,
     });
 
     const attendancePercentage =
-      totalClasses > 0 ? ((attendanceCount / totalClasses) * 100).toFixed(2) : 0;
+      totalClasses > 0 ? parseFloat(((attendanceCount / totalClasses) * 100).toFixed(2)) : 0;
 
     res.status(200).json({
       success: true,

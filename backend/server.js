@@ -16,6 +16,7 @@ const app = express();
 // Middleware
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use('/uploads', express.static('uploads'));
 
 // Enable CORS
 app.use(
@@ -41,6 +42,8 @@ app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/materials', require('./routes/materials'));
 app.use('/api/student-profile', require('./routes/studentProfile'));
 app.use('/api/exams', require('./routes/exams'));
+app.use('/api/assignments', require('./routes/assignments'));
+app.use('/api/tasks', require('./routes/tasks'));
 
 // Root route
 app.get('/', (req, res) => {

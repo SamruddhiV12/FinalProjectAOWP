@@ -878,27 +878,49 @@
      margin-top: 1rem;
    }
    
-   .navbar {
-     background: var(--bg-card);
-     padding: 1rem 2rem;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     box-shadow: var(--shadow-sm);
-     border-bottom: 1px solid var(--border);
-     position: sticky;
-     top: 0;
-     z-index: 100;
-   }
-   
-   .nav-brand h2 {
-     font-size: 1.3rem;
-   }
-   
-   .nav-links {
-     display: flex;
-     gap: 2rem;
-   }
+  .navbar {
+    background: var(--bg-card);
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 1rem;
+  }
+  
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 220px;
+  }
+
+  .nav-logo {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-gold);
+  }
+  
+  .nav-brand-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
    
    .nav-links a {
      color: var(--text-secondary);
@@ -910,10 +932,12 @@
      border-radius: var(--radius-sm);
    }
    
-   .nav-links a:hover {
-     color: var(--text-primary);
-     background: var(--bg-secondary);
-   }
+  .nav-links a:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+  }
+
+  /* Removed old icon styling that was causing overlay */
    
   .nav-user {
     display: flex;

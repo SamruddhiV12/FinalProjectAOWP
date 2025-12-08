@@ -1,3 +1,9 @@
+import image1 from '../assets/images/image1.jpg';
+import image2 from '../assets/images/image2.jpeg';
+import image3 from '../assets/images/image3.jpg';
+import image4 from '../assets/images/image4.jpeg';
+import image5 from '../assets/images/image6.jpeg';
+
 // High-quality Bharatanatyam and Chidambaram Temple imagery
 // Source: Unsplash & Pexels (Free to use)
 
@@ -117,5 +123,44 @@ export const GALLERY_COLLECTIONS = {
     IMAGES.bharatanatyam.jewelry,
   ],
 };
+
+// Curated set for landing + gallery pages
+export const FEATURED_GALLERY = [
+  {
+    id: 'local-1',
+    src: image1,
+    title: 'Moment 1',
+    category: 'featured',
+    description: 'Captured memory from our gallery',
+  },
+  {
+    id: 'local-2',
+    src: image2,
+    title: 'Moment 2',
+    category: 'featured',
+    description: 'A highlight from recent events',
+  },
+  {
+    id: 'local-3',
+    src: image3,
+    title: 'Moment 3',
+    category: 'featured',
+    description: 'Artistic glimpse from the academy',
+  },
+  {
+    id: 'local-4',
+    src: image4,
+    title: 'Moment 4',
+    category: 'featured',
+    description: 'Performance frame we love',
+  },
+  {
+    id: 'local-5',
+    src: image5,
+    title: 'Moment 5',
+    category: 'featured',
+    description: 'Another favorite capture',
+  },
+];
 
 export default IMAGES;

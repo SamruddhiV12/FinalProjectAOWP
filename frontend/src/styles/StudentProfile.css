@@ -14,16 +14,62 @@
 }
 
 .profile-banner {
-  height: 200px;
-  overflow: hidden;
+  height: 180px;
   position: relative;
+  background: linear-gradient(135deg, #f6e9cf 0%, #fdf9f1 50%, #f0dfbd 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
 }
 
-.banner-image {
+.profile-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9d6a6;
+}
+
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #c9a961;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
+}
+
+.brand-copy h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #2e2411;
+  font-weight: 800;
+}
+
+.brand-copy .brand-eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b7355;
+}
+
+.brand-copy .brand-subtitle {
+  margin: 2px 0 0 0;
+  font-size: 0.95rem;
+  color: #6b6b6b;
 }
 
 .profile-header-content {
@@ -34,7 +80,7 @@
   align-items: flex-end;
   gap: 30px;
   position: relative;
-  margin-top: -80px;
+  margin-top: -60px;
   padding-bottom: 30px;
 }
 
@@ -80,12 +126,18 @@
 }
 
 .upload-icon {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon svg {
+  color: white;
 }
 
 .profile-info-header {
   flex-grow: 1;
-  padding-top: 60px;
+  padding-top: 45px;
 }
 
 .profile-info-header h1 {
@@ -108,7 +160,7 @@
 }
 
 .profile-header-actions {
-  padding-top: 60px;
+  padding-top: 45px;
 }
 
 .btn-edit-profile,
@@ -121,6 +173,9 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-edit-profile {
@@ -335,8 +390,20 @@
 }
 
 .stat-icon {
-  font-size: 2rem;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f5f1e8 0%, #f2e9d8 100%);
+}
+
+.stat-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #8B7355;
 }
 
 .stat-item strong {

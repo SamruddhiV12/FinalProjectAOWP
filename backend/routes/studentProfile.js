@@ -10,9 +10,12 @@ const {
 // All routes are protected
 router.use(protect);
 
-// Get student profile and stats
+// Stats first to avoid catching "stats" as an ID
+router.get('/stats', getStudentStats);       // current user stats
+router.get('/:id/stats', getStudentStats);   // specific student stats
+
+// Get student profile
 router.get('/:id?', getStudentProfile);
-router.get('/:id/stats', getStudentStats);
 
 // Update student profile
 router.put('/:id?', updateStudentProfile);

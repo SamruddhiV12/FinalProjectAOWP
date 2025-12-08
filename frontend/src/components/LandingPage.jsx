@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IMAGES } from '../constants/images';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { IMAGES, FEATURED_GALLERY } from '../constants/images';
 import classPhoto from '../assets/images/class-photo-sda.jpeg';
 import fullLogo from '../assets/images/full-logo-sda.jpeg';
 import '../styles/LandingPageEnhanced.css';
@@ -8,6 +8,9 @@ import '../styles/LandingPageEnhanced.css';
 function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState({});
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,25 +41,76 @@ function LandingPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const target = location.state.scrollTo;
+      setTimeout(() => {
+        if (target === 'top') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
+
+  const galleryPreviewItems = FEATURED_GALLERY.slice(0, 3);
+  const getGalleryLayout = () => '';
+
+  const scrollToSection = (section) => {
+    const el = document.getElementById(section);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleNavClick = (section) => (e) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: section } });
+      return;
+    }
+    scrollToSection(section);
+  };
+
+  const handleHome = () => {
+    setMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: 'top' } });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="landing-page-modern">
       {/* Navigation Bar */}
       <nav className={`modern-nav ${scrollY > 50 ? 'scrolled' : ''}`}>
         <div className="nav-container">
-          <Link to="/" className="brand">
+          <Link to="/" className="brand" onClick={handleHome}>
             <div className="brand-logo">
               <img src={fullLogo} alt="SDA" />
             </div>
             <span className="brand-text">Samruddhi's Dance Academy</span>
           </Link>
-          <div className="nav-menu">
-            <Link to="/about" className="nav-link">About</Link>
-            <a href="#classes" className="nav-link">Classes</a>
-            <Link to="/gallery" className="nav-link">Gallery</Link>
-            <a href="#contact" className="nav-link">Contact</a>
+          <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
+            <span />
+            <span />
+            <span />
+          </button>
+          <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+            <Link to="/about" className="nav-link" onClick={() => setMenuOpen(false)}>About</Link>
+            <button className="nav-link as-button" onClick={handleNavClick('classes')}>Classes</button>
+            <Link to="/gallery" className="nav-link" onClick={() => setMenuOpen(false)}>Gallery</Link>
+            <button className="nav-link as-button" onClick={handleNavClick('contact')}>Contact</button>
             <div className="nav-actions">
-              <Link to="/login" className="nav-btn nav-btn-secondary">Login</Link>
-              <Link to="/signup" className="nav-btn nav-btn-primary">Get Started</Link>
+              <Link to="/login" className="nav-btn nav-btn-secondary" onClick={() => setMenuOpen(false)}>Login</Link>
+              <Link to="/signup" className="nav-btn nav-btn-primary" onClick={() => setMenuOpen(false)}>Get Started</Link>
             </div>
           </div>
         </div>
@@ -141,22 +195,22 @@ function LandingPage() {
 
               <div className="feature-cards">
                 <div className="feature-card">
-                  <div className="feature-icon">🎭</div>
+                  <div className="feature-icon-line"></div>
                   <h3>Expert Mentorship</h3>
                   <p>Learn from Guru Samruddhi, trained in traditional Bharatanatyam with extensive performance experience</p>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon">📚</div>
+                  <div className="feature-icon-line"></div>
                   <h3>Holistic Curriculum</h3>
                   <p>Theory and practice combined - from Natyashastra to stage presence and cultural context</p>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon">🎪</div>
+                  <div className="feature-icon-line"></div>
                   <h3>Performance Ready</h3>
                   <p>Regular stage performances, cultural events, and preparation for Arangetram ceremonies</p>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon">💻</div>
+                  <div className="feature-icon-line"></div>
                   <h3>Modern Tools</h3>
                   <p>Digital assignments, progress tracking, online materials, and flexible learning options</p>
                 </div>
@@ -169,7 +223,7 @@ function LandingPage() {
       {/* Classes Section */}
       <section id="classes" className={`section-modern classes-section-modern animate-on-scroll ${isVisible.classes ? 'visible' : ''}`}>
         <div className="container">
-          <div className="section-header centered">
+          <div className="section-header inline">
             <div className="section-tag">Programs</div>
             <h2 className="section-title">Choose Your Path</h2>
             <p className="section-subtitle">Tailored programs for every skill level, from beginners to advanced performers</p>
@@ -178,7 +232,6 @@ function LandingPage() {
           <div className="classes-grid-modern">
             <div className="class-card-modern">
               <div className="class-header">
-                <div className="class-icon">🌱</div>
                 <div className="class-level">Basic Level</div>
               </div>
               <h3 className="class-title">Foundation</h3>
@@ -212,7 +265,6 @@ function LandingPage() {
             <div className="class-card-modern featured">
               <div className="popular-badge">Most Popular</div>
               <div className="class-header">
-                <div className="class-icon">🔥</div>
                 <div className="class-level">Intermediate</div>
               </div>
               <h3 className="class-title">Advancement</h3>
@@ -245,7 +297,6 @@ function LandingPage() {
 
             <div className="class-card-modern">
               <div className="class-header">
-                <div className="class-icon">⭐</div>
                 <div className="class-level">Advanced</div>
               </div>
               <h3 className="class-title">Mastery</h3>
@@ -282,58 +333,27 @@ function LandingPage() {
       {/* Gallery Preview */}
       <section id="gallery" className={`section-modern gallery-section-modern animate-on-scroll ${isVisible.gallery ? 'visible' : ''}`}>
         <div className="container">
-          <div className="section-header centered">
+          <div className="section-header inline">
             <div className="section-tag">Moments</div>
             <h2 className="section-title">Gallery</h2>
             <p className="section-subtitle">Glimpses of performances, traditions, and our artistic journey</p>
           </div>
 
           <div className="gallery-grid-modern">
-            <div className="gallery-item-modern large">
-              <img src={IMAGES.bharatanatyam.pose2} alt="Classical Performance" />
-              <div className="gallery-overlay-modern">
-                <div className="overlay-content">
-                  <h4>Classical Performance</h4>
-                  <p>Traditional Bharatanatyam showcase</p>
+            {galleryPreviewItems.map((item, index) => (
+              <div
+                key={item.id}
+                className={`gallery-item-modern ${getGalleryLayout(index)}`}
+              >
+                <img src={item.src} alt={item.title} />
+                <div className="gallery-overlay-modern">
+                  <div className="overlay-content">
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="gallery-item-modern">
-              <img src={IMAGES.temple.main} alt="Chidambaram Temple" />
-              <div className="gallery-overlay-modern">
-                <div className="overlay-content">
-                  <h4>Sacred Spaces</h4>
-                  <p>Chidambaram Temple</p>
-                </div>
-              </div>
-            </div>
-            <div className="gallery-item-modern">
-              <img src={IMAGES.bharatanatyam.group1} alt="Group Performance" />
-              <div className="gallery-overlay-modern">
-                <div className="overlay-content">
-                  <h4>Group Performance</h4>
-                  <p>Ensemble excellence</p>
-                </div>
-              </div>
-            </div>
-            <div className="gallery-item-modern">
-              <img src={IMAGES.temple.nataraja1} alt="Lord Nataraja" />
-              <div className="gallery-overlay-modern">
-                <div className="overlay-content">
-                  <h4>Lord Nataraja</h4>
-                  <p>The cosmic dancer</p>
-                </div>
-              </div>
-            </div>
-            <div className="gallery-item-modern tall">
-              <img src={IMAGES.bharatanatyam.pose3} alt="Dance Expression" />
-              <div className="gallery-overlay-modern">
-                <div className="overlay-content">
-                  <h4>Expression</h4>
-                  <p>Abhinaya in motion</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="gallery-cta-modern">
@@ -360,12 +380,6 @@ function LandingPage() {
 
               <div className="contact-info-grid">
                 <div className="contact-info-item">
-                  <div className="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
                   <div className="info-text">
                     <div className="info-label">Location</div>
                     <div className="info-value">123 Temple Street, Cultural District, Pune</div>
@@ -373,11 +387,6 @@ function LandingPage() {
                 </div>
 
                 <div className="contact-info-item">
-                  <div className="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.5953 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
                   <div className="info-text">
                     <div className="info-label">Phone</div>
                     <div className="info-value">+91 98765 43210</div>
@@ -385,12 +394,6 @@ function LandingPage() {
                 </div>
 
                 <div className="contact-info-item">
-                  <div className="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
                   <div className="info-text">
                     <div className="info-label">Email</div>
                     <div className="info-value">info@samruddhidance.com</div>
@@ -398,12 +401,6 @@ function LandingPage() {
                 </div>
 
                 <div className="contact-info-item">
-                  <div className="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
                   <div className="info-text">
                     <div className="info-label">Class Timings</div>
                     <div className="info-value">Mon-Sat: 4:00 PM - 8:00 PM</div>

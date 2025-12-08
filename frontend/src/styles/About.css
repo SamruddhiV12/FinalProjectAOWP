@@ -27,6 +27,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 84px;
 }
 
 .about-hero-bg {
@@ -72,22 +73,24 @@
 
 /* Container */
 .about-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
 }
 
 /* Introduction Section */
 .about-intro {
-  padding: 100px 0;
+  padding: 6rem 0;
   background: white;
 }
 
 .intro-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 4rem;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .intro-image {
@@ -138,28 +141,31 @@
 
 /* Founder Section */
 .founder-section {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%);
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--temple-cream) 0%, var(--temple-ivory) 100%);
 }
 
 .founder-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  gap: 4rem;
   align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .founder-content h2 {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-weight: 800;
+  color: var(--temple-bronze);
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .founder-content h3 {
   font-size: 1.8rem;
-  font-weight: 600;
-  color: #8B0000;
+  font-weight: 700;
+  color: var(--temple-gold);
   margin-bottom: 1.5rem;
 }
 
@@ -185,10 +191,15 @@
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-left: 3px solid var(--temple-gold);
 }
 
-.achievement-icon {
-  font-size: 2rem;
+.achievement-marker {
+  width: 12px;
+  height: 12px;
+  background: var(--temple-gold);
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .achievement-item p {
@@ -233,16 +244,17 @@
 
 /* Heritage Section */
 .heritage-section {
-  padding: 100px 0;
+  padding: 6rem 0;
   background: white;
 }
 
 .heritage-section h2 {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-weight: 800;
+  color: var(--temple-bronze);
   text-align: center;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .heritage-intro {
@@ -257,7 +269,9 @@
 .heritage-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .heritage-card {
@@ -282,7 +296,7 @@
 .heritage-card h3 {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #8B0000;
+  color: var(--temple-bronze);
   margin: 20px 25px 10px;
 }
 
@@ -295,22 +309,25 @@
 
 /* Chidambaram Section */
 .chidambaram-section {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%);
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--temple-cream) 0%, var(--temple-ivory) 100%);
 }
 
 .chidambaram-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 4rem;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .chidambaram-text h2 {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-weight: 800;
+  color: var(--temple-bronze);
   margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .chidambaram-text p {
@@ -345,49 +362,55 @@
 
 /* Values Section */
 .values-section {
-  padding: 100px 0;
+  padding: 6rem 0;
   background: white;
 }
 
 .values-section h2 {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-weight: 800;
+  color: var(--temple-bronze);
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 3rem;
+  line-height: 1.2;
 }
 
 .values-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .value-card {
-  background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+  background: linear-gradient(135deg, var(--temple-cream) 0%, #ffffff 100%);
   padding: 35px 25px;
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border-top: 3px solid var(--temple-gold);
+  position: relative;
 }
 
 .value-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(139, 0, 0, 0.15);
-  border-color: #8B0000;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(201, 169, 97, 0.2);
 }
 
-.value-icon {
-  font-size: 3rem;
-  margin-bottom: 15px;
+.value-marker {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--temple-gold) 0%, var(--temple-bronze) 100%);
+  margin: 0 auto 20px;
+  border-radius: 2px;
 }
 
 .value-card h3 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--temple-bronze);
   margin-bottom: 12px;
 }
 
@@ -399,16 +422,17 @@
 
 /* Timeline Section */
 .timeline-section {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--temple-cream) 0%, var(--temple-ivory) 100%);
 }
 
 .timeline-section h2 {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-weight: 800;
+  color: var(--temple-bronze);
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 4rem;
+  line-height: 1.2;
 }
 
 .timeline {
@@ -421,19 +445,20 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #8B0000, #DC143C);
+  top: 20px;
+  bottom: 60px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--temple-gold) 0%, var(--temple-bronze) 100%);
   transform: translateX(-50%);
 }
 
 .timeline-item {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 40px;
+  gap: 50px;
   margin-bottom: 60px;
   align-items: center;
+  position: relative;
 }
 
 .timeline-item:nth-child(even) .timeline-year {
@@ -448,29 +473,30 @@
 .timeline-year {
   font-size: 2rem;
   font-weight: 800;
-  color: #8B0000;
+  color: var(--temple-gold);
   position: relative;
 }
 
 .timeline-year::after {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: #8B0000;
-  border: 4px solid white;
+  width: 16px;
+  height: 16px;
+  background: var(--temple-gold);
+  border: 3px solid white;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
-  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+  box-shadow: 0 0 0 4px var(--temple-cream), 0 4px 12px rgba(201, 169, 97, 0.4);
+  z-index: 2;
 }
 
 .timeline-item:nth-child(odd) .timeline-year::after {
-  right: -50px;
+  right: -58px;
 }
 
 .timeline-item:nth-child(even) .timeline-year::after {
-  left: -50px;
+  left: -58px;
 }
 
 .timeline-content {
@@ -489,7 +515,7 @@
 .timeline-content h3 {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--temple-bronze);
   margin-bottom: 8px;
 }
 
@@ -501,21 +527,22 @@
 
 /* CTA Section */
 .about-cta {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--temple-gold) 0%, var(--temple-dark-gold) 100%);
   text-align: center;
 }
 
 .cta-content h2 {
   font-size: 3rem;
   font-weight: 800;
-  color: white;
+  color: var(--temple-bronze);
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .cta-content p {
   font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--temple-bronze);
   margin-bottom: 2.5rem;
 }
 
@@ -539,25 +566,26 @@
 }
 
 .btn-cta-primary {
-  background: white;
-  color: #8B0000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: var(--temple-bronze);
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
 }
 
 .btn-cta-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+  background: var(--temple-stone);
 }
 
 .btn-cta-secondary {
   background: transparent;
-  color: white;
-  border: 2px solid white;
+  color: var(--temple-bronze);
+  border: 2px solid var(--temple-bronze);
 }
 
 .btn-cta-secondary:hover {
-  background: white;
-  color: #8B0000;
+  background: var(--temple-bronze);
+  color: white;
 }
 
 /* Animations */
@@ -573,20 +601,29 @@
 }
 
 /* Responsive Design */
-@media (max-width: 968px) {
-  .about-hero-content h1 {
-    font-size: 3rem;
+@media (max-width: 1024px) {
+  .about-container {
+    padding: 0 2rem;
   }
 
   .intro-grid,
   .founder-grid,
   .chidambaram-content {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 3rem;
   }
 
-  .heritage-grid,
   .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 968px) {
+  .about-hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .heritage-grid {
     grid-template-columns: 1fr;
   }
 
@@ -622,8 +659,13 @@
 }
 
 @media (max-width: 640px) {
+  .about-container {
+    padding: 0 1.25rem;
+  }
+
   .about-hero {
     height: 50vh;
+    min-height: 300px;
   }
 
   .about-hero-content h1 {
@@ -641,7 +683,7 @@
   .values-section,
   .timeline-section,
   .about-cta {
-    padding: 60px 0;
+    padding: 4rem 0;
   }
 
   .intro-content h2,
@@ -650,11 +692,33 @@
   .chidambaram-text h2,
   .values-section h2,
   .timeline-section h2 {
-    font-size: 2rem;
+    font-size: 1.875rem;
+  }
+
+  .intro-lead {
+    font-size: 1.125rem;
+  }
+
+  .intro-content p,
+  .founder-content p,
+  .chidambaram-text p {
+    font-size: 1rem;
+  }
+
+  .heritage-card img {
+    height: 200px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
   }
 
   .cta-content h2 {
     font-size: 2rem;
+  }
+
+  .cta-content p {
+    font-size: 1.125rem;
   }
 
   .cta-buttons {

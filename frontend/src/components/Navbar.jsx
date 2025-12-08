@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NotificationBell from './NotificationBell';
+import logo from '../assets/images/full-logo-sda.jpeg';
 
 function Navbar({ user, onLogout }) {
   return (
     <nav className="navbar">
-      <div className="nav-brand">
-        <h2>🎭 Samruddhi's Dance Academy</h2>
-      </div>
+      <Link to={user.role === 'admin' ? '/admin' : '/student'} className="nav-brand">
+        <img src={logo} alt="SDA" className="nav-logo" />
+        <span className="nav-brand-text">Samruddhi's Dance Academy</span>
+      </Link>
 
       <div className="nav-links">
         {user.role === 'student' ? (
