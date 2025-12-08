@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/FinalProjectAOWP/static/css/main.24ac7fd0.css",
+    "main.js": "/FinalProjectAOWP/static/js/main.100fa7d3.js",
+    "static/media/full-logo-sda.jpeg": "/FinalProjectAOWP/static/media/full-logo-sda.f671b67521d0dfdc21cb.jpeg",
+    "static/media/class-photo-sda.jpeg": "/FinalProjectAOWP/static/media/class-photo-sda.679e4f7e44be1e455eeb.jpeg",
+    "static/media/image1.jpg": "/FinalProjectAOWP/static/media/image1.b3cf5159da6a0d1db90b.jpg",
+    "static/media/image3.jpg": "/FinalProjectAOWP/static/media/image3.5bb06140551f18e1857d.jpg",
+    "static/media/image4.jpeg": "/FinalProjectAOWP/static/media/image4.9241d9b7cb4171c9f017.jpeg",
+    "index.html": "/FinalProjectAOWP/index.html",
+    "main.24ac7fd0.css.map": "/FinalProjectAOWP/static/css/main.24ac7fd0.css.map",
+    "main.100fa7d3.js.map": "/FinalProjectAOWP/static/js/main.100fa7d3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.24ac7fd0.css",
+    "static/js/main.100fa7d3.js"
+  ]
+}
