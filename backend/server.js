@@ -19,6 +19,17 @@ app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use('/uploads', express.static('uploads'));
 
+// Simple health before DB middleware to avoid crashing on connection issues
+app.get('/api/health', (req, res) => {
+  res.json({
+    success: true,
+    status: 'ok',
+    env: process.env.NODE_ENV || 'development',
+    vercel: !!process.env.VERCEL,
+    hasMongoUri: !!process.env.MONGODB_URI,
+  });
+});
+
 // Enable CORS
 app.use(
   cors({
@@ -29,6 +40,9 @@ app.use(
 
 // Ensure DB connection per request (helps in serverless cold starts)
 app.use(async (req, res, next) => {
+  if (req.path === '/api/health') {
+    return next();
+  }
   try {
     if (mongoose.connection.readyState !== 1) {
       await connectDB();
@@ -58,18 +72,6 @@ app.use('/api/student-profile', require('./routes/studentProfile'));
 app.use('/api/exams', require('./routes/exams'));
 app.use('/api/assignments', require('./routes/assignments'));
 app.use('/api/tasks', require('./routes/tasks'));
-
-// Health check for deployments
-app.get('/api/health', (req, res) => {
-  res.json({
-    success: true,
-    status: 'ok',
-    env: process.env.NODE_ENV || 'development',
-    vercel: !!process.env.VERCEL,
-    mongoConnected: mongoose.connection.readyState === 1,
-    hasMongoUri: !!process.env.MONGODB_URI,
-  });
-});
 
 // Root route
 app.get('/', (req, res) => {
