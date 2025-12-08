@@ -84,7 +84,7 @@ function ClassManagement({ user }) {
   const fetchSchedules = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/class-schedules', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/class-schedules`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -106,7 +106,7 @@ function ClassManagement({ user }) {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/class-schedules', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/class-schedules`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ function ClassManagement({ user }) {
 
     for (const date of bulkDates) {
       try {
-        const response = await fetch('http://localhost:5001/api/class-schedules', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/class-schedules`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ function ClassManagement({ user }) {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:5001/api/class-schedules/${scheduleId}/publish`,
+        `${process.env.REACT_APP_API_URL}/api/class-schedules/${scheduleId}/publish`,
         {
           method: 'PATCH',
           headers: { Authorization: `Bearer ${token}` },
@@ -252,7 +252,7 @@ function ClassManagement({ user }) {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:5001/api/class-schedules/${scheduleId}`,
+        `${process.env.REACT_APP_API_URL}/api/class-schedules/${scheduleId}`,
         {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` },
@@ -290,7 +290,7 @@ function ClassManagement({ user }) {
   const handleSaveEdit = async (scheduleId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/class-schedules/${scheduleId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/class-schedules/${scheduleId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

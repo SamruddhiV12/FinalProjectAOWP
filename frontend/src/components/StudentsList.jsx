@@ -30,7 +30,7 @@ function StudentsList() {
   const fetchStudents = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/students', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ function StudentsList() {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/students/stats', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -126,7 +126,7 @@ function StudentsList() {
   const handleSaveEdit = async (studentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/students/${studentId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/${studentId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

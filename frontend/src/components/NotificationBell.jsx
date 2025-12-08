@@ -10,7 +10,7 @@ function NotificationBell({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5001/api/notifications', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notifications`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -34,7 +34,7 @@ function NotificationBell({ user }) {
   const markAsRead = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5001/api/notifications/${id}/read`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/notifications/${id}/read`, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -47,7 +47,7 @@ function NotificationBell({ user }) {
   const markAll = async () => {
     try {
       const token = localStorage.getItem('token');
-      await fetch('http://localhost:5001/api/notifications/read-all', {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/notifications/read-all`, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${token}` },
       });

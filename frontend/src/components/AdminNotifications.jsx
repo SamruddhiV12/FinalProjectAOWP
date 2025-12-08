@@ -43,7 +43,7 @@ function AdminNotifications() {
 
   const fetchBatches = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/batches?isActive=true', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/batches?isActive=true`, {
         headers: authHeaders(),
       });
       const data = await res.json();
@@ -60,7 +60,7 @@ function AdminNotifications() {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/notifications/sent', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notifications/sent`, {
         headers: authHeaders(),
       });
       const data = await res.json();
@@ -127,7 +127,7 @@ function AdminNotifications() {
     setStatusMessage('');
 
     try {
-      const res = await fetch('http://localhost:5001/api/notifications/payment-reminder', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notifications/payment-reminder`, {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify({
@@ -184,7 +184,7 @@ function AdminNotifications() {
       : '⚠️ Schedule Updated';
 
     try {
-      const res = await fetch('http://localhost:5001/api/notifications', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notifications`, {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify({

@@ -21,7 +21,7 @@ function ExamRecords() {
 
   const fetchExams = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/exams', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/exams`, {
         headers: authHeaders(),
       });
       const data = await res.json();
@@ -37,7 +37,7 @@ function ExamRecords() {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/exams/stats', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/exams/stats`, {
         headers: authHeaders(),
       });
       const data = await res.json();

@@ -46,7 +46,7 @@ function BatchManagement() {
   const fetchBatches = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/batches', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/batches`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,7 +70,7 @@ function BatchManagement() {
   const fetchStudents = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/students', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -89,7 +89,7 @@ function BatchManagement() {
   const fetchTeachers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/auth/me', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -125,7 +125,7 @@ function BatchManagement() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/batches', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/batches`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ function BatchManagement() {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:5001/api/batches/${selectedBatch._id}/students`,
+        `${process.env.REACT_APP_API_URL}/api/batches/${selectedBatch._id}/students`,
         {
           method: 'POST',
           headers: {
@@ -218,7 +218,7 @@ function BatchManagement() {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:5001/api/batches/${batchId}/students/${studentId}`,
+        `${process.env.REACT_APP_API_URL}/api/batches/${batchId}/students/${studentId}`,
         {
           method: 'DELETE',
           headers: {
