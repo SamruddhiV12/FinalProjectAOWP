@@ -84,7 +84,7 @@ function MockExam({ user }) {
 
   const handleSubmit = () => {
     setSubmitted(true);
-    alert('Exam Submitted! ✅\n\nYour teacher will review and grade your answers soon.');
+    alert('Exam Submitted! \n\nYour teacher will review and grade your answers soon.');
   };
 
   const formatTime = (seconds) => {
