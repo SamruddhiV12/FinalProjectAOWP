@@ -10,8 +10,6 @@ function MockExam({ user }) {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    // MOCK DATA - Replace with API call later
-    // TODO: GET /api/exams/:id
     setExam({
       id: 1,
       title: 'Madhyamaa Pratham Theory Exam',
@@ -85,9 +83,6 @@ function MockExam({ user }) {
   };
 
   const handleSubmit = () => {
-    // MOCK SUBMISSION - Replace with API call later
-    // TODO: POST /api/exams/submit with { examId, studentId, answers }
-    
     setSubmitted(true);
     alert('Exam Submitted! ✅\n\nYour teacher will review and grade your answers soon.');
   };

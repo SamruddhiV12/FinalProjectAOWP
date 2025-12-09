@@ -2,12 +2,10 @@
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
-// Helper function to get auth token from localStorage
 const getAuthToken = () => {
   return localStorage.getItem('token');
 };
 
-// Helper function to get auth headers
 const getAuthHeaders = () => {
   const token = getAuthToken();
   return {
@@ -16,7 +14,6 @@ const getAuthHeaders = () => {
   };
 };
 
-// Generic API call function
 const apiCall = async (endpoint, options = {}) => {
   try {
     const response = await fetch(`${API_URL}${endpoint}`, {
@@ -55,16 +52,13 @@ const apiCall = async (endpoint, options = {}) => {
   }
 };
 
-// Authentication APIs
 export const authAPI = {
-  // Signup
   signup: async (userData) => {
     const response = await apiCall('/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify(userData),
     });
 
-    // Store token in localStorage
     if (response.success && response.data.token) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data));
@@ -73,14 +67,12 @@ export const authAPI = {
     return response;
   },
 
-  // Login
   login: async (credentials) => {
     const response = await apiCall('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     });
 
-    // Store token in localStorage
     if (response.success && response.data.token) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data));
@@ -89,18 +81,15 @@ export const authAPI = {
     return response;
   },
 
-  // Logout
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   },
 
-  // Get current user profile
   getMe: async () => {
     return await apiCall('/api/auth/me');
   },
 
-  // Update profile
   updateProfile: async (profileData) => {
     return await apiCall('/api/auth/update-profile', {
       method: 'PUT',
@@ -108,7 +97,6 @@ export const authAPI = {
     });
   },
 
-  // Update password
   updatePassword: async (passwordData) => {
     return await apiCall('/api/auth/update-password', {
       method: 'PUT',
@@ -116,19 +104,16 @@ export const authAPI = {
     });
   },
 
-  // Get user from localStorage
   getCurrentUser: () => {
     const userStr = localStorage.getItem('user');
     return userStr ? JSON.parse(userStr) : null;
   },
 
-  // Check if user is authenticated
   isAuthenticated: () => {
     return !!getAuthToken();
   },
 };
 
-// Export API URL for other uses
 export { API_URL };
 
 export default apiCall;

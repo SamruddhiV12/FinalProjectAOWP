@@ -26,9 +26,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// @desc    Get materials (students see only their batch materials, admin sees all)
-// @route   GET /api/materials
-// @access  Private
 const getMaterials = async (req, res) => {
   try {
     const user = req.user;
@@ -66,9 +63,6 @@ const getMaterials = async (req, res) => {
   }
 };
 
-// @desc    Upload new material
-// @route   POST /api/materials
-// @access  Private (Admin only)
 const uploadMaterial = async (req, res) => {
   try {
     const { title, description, category, fileUrl, fileName, fileType, fileSize, batchIds, isPublic } = req.body;
@@ -118,9 +112,6 @@ const uploadMaterial = async (req, res) => {
   }
 };
 
-// @desc    Update material
-// @route   PUT /api/materials/:id
-// @access  Private (Admin only)
 const updateMaterial = async (req, res) => {
   try {
     const { title, description, category, batchIds, isPublic } = req.body;
@@ -166,9 +157,6 @@ const updateMaterial = async (req, res) => {
   }
 };
 
-// @desc    Delete material
-// @route   DELETE /api/materials/:id
-// @access  Private (Admin only)
 const deleteMaterial = async (req, res) => {
   try {
     const material = await Material.findById(req.params.id);
@@ -195,9 +183,6 @@ const deleteMaterial = async (req, res) => {
   }
 };
 
-// @desc    Track download
-// @route   PATCH /api/materials/:id/download
-// @access  Private
 const trackDownload = async (req, res) => {
   try {
     const material = await Material.findById(req.params.id);

@@ -1,9 +1,6 @@
 const Exam = require('../models/Exam');
 const User = require('../models/User');
 
-// @desc    Get all exams for a student
-// @route   GET /api/exams
-// @access  Private (Student/Admin)
 exports.getStudentExams = async (req, res) => {
   try {
     const studentId = req.user.role === 'student' ? req.user._id : req.query.studentId;
@@ -37,9 +34,6 @@ exports.getStudentExams = async (req, res) => {
   }
 };
 
-// @desc    Get single exam details
-// @route   GET /api/exams/:id
-// @access  Private (Student/Admin)
 exports.getExamById = async (req, res) => {
   try {
     const exam = await Exam.findById(req.params.id)
@@ -78,9 +72,6 @@ exports.getExamById = async (req, res) => {
   }
 };
 
-// @desc    Create new exam (Admin only)
-// @route   POST /api/exams
-// @access  Private (Admin)
 exports.createExam = async (req, res) => {
   try {
     const {
@@ -155,9 +146,6 @@ exports.createExam = async (req, res) => {
   }
 };
 
-// @desc    Update exam (Admin only)
-// @route   PUT /api/exams/:id
-// @access  Private (Admin)
 exports.updateExam = async (req, res) => {
   try {
     let exam = await Exam.findById(req.params.id);
@@ -198,9 +186,6 @@ exports.updateExam = async (req, res) => {
   }
 };
 
-// @desc    Delete exam (Admin only)
-// @route   DELETE /api/exams/:id
-// @access  Private (Admin)
 exports.deleteExam = async (req, res) => {
   try {
     const exam = await Exam.findById(req.params.id);
@@ -228,9 +213,6 @@ exports.deleteExam = async (req, res) => {
   }
 };
 
-// @desc    Get exam statistics for a student
-// @route   GET /api/exams/stats/:studentId
-// @access  Private (Student/Admin)
 exports.getExamStats = async (req, res) => {
   try {
     const studentId =

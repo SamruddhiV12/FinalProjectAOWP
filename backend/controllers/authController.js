@@ -8,9 +8,6 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register new user (Signup)
-// @route   POST /api/auth/signup
-// @access  Public
 const signup = async (req, res) => {
   try {
     const {
@@ -112,9 +109,6 @@ const signup = async (req, res) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -183,9 +177,6 @@ const login = async (req, res) => {
   }
 };
 
-// @desc    Get current user profile
-// @route   GET /api/auth/me
-// @access  Private
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
@@ -204,9 +195,6 @@ const getMe = async (req, res) => {
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/update-profile
-// @access  Private
 const updateProfile = async (req, res) => {
   try {
     const fieldsToUpdate = {
@@ -249,9 +237,6 @@ const updateProfile = async (req, res) => {
   }
 };
 
-// @desc    Update password
-// @route   PUT /api/auth/update-password
-// @access  Private
 const updatePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;

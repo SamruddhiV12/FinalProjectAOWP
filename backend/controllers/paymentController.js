@@ -10,9 +10,6 @@ const parseMonth = (monthStr) => {
   return new Date(Date.UTC(year, month - 1, 1));
 };
 
-// @desc    Create or update a payment record (upsert per student+month+batch)
-// @route   POST /api/payments
-// @access  Private (Admin)
 const upsertPayment = async (req, res) => {
   try {
     const { studentId, batchId, month, amount, status, method, notes, paidOn, notify } = req.body;
@@ -85,9 +82,6 @@ const upsertPayment = async (req, res) => {
   }
 };
 
-// @desc    Get payments (filter by batch, student, month, status)
-// @route   GET /api/payments
-// @access  Private (Admin/Student - students see own)
 const getPayments = async (req, res) => {
   try {
     const { batchId, studentId, month, status } = req.query;
@@ -124,9 +118,6 @@ const getPayments = async (req, res) => {
   }
 };
 
-// @desc    Batch + month view with students and payment status
-// @route   GET /api/payments/batch-view?batchId=xxx&month=YYYY-MM
-// @access  Private (Admin)
 const getBatchMonthView = async (req, res) => {
   try {
     const { batchId, month } = req.query;
@@ -190,9 +181,6 @@ const getBatchMonthView = async (req, res) => {
   }
 };
 
-// @desc    Update payment by id
-// @route   PUT /api/payments/:id
-// @access  Private (Admin)
 const updatePayment = async (req, res) => {
   try {
     const allowed = ['amount', 'status', 'method', 'notes', 'paidOn'];
@@ -224,9 +212,6 @@ const updatePayment = async (req, res) => {
   }
 };
 
-// @desc    Batch/month summary (paid vs pending, amounts)
-// @route   GET /api/payments/summary
-// @access  Private (Admin)
 const getSummary = async (req, res) => {
   try {
     const { batchId, month } = req.query;

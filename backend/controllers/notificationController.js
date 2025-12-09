@@ -14,9 +14,6 @@ const createNotificationsForUsers = async ({ userIds, type, title, message, meta
   return Notification.insertMany(docs);
 };
 
-// @desc    Get notifications for current user
-// @route   GET /api/notifications
-// @access  Private
 const getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({ user: req.user._id })
@@ -30,9 +27,6 @@ const getNotifications = async (req, res) => {
   }
 };
 
-// @desc    Create notifications (admin)
-// @route   POST /api/notifications
-// @access  Private (Admin)
 const createNotification = async (req, res) => {
   try {
     const { userIds = [], type = 'general', title, message, meta = {} } = req.body;
@@ -54,9 +48,6 @@ const createNotification = async (req, res) => {
   }
 };
 
-// @desc    Mark notification as read
-// @route   PATCH /api/notifications/:id/read
-// @access  Private
 const markAsRead = async (req, res) => {
   try {
     const updated = await Notification.findOneAndUpdate(
@@ -74,9 +65,6 @@ const markAsRead = async (req, res) => {
   }
 };
 
-// @desc    Mark all notifications as read
-// @route   PATCH /api/notifications/read-all
-// @access  Private
 const markAllAsRead = async (req, res) => {
   try {
     await Notification.updateMany({ user: req.user._id, read: false }, { read: true });
@@ -87,9 +75,6 @@ const markAllAsRead = async (req, res) => {
   }
 };
 
-// @desc    Send payment reminder to batch pending
-// @route   POST /api/notifications/payment-reminder
-// @access  Private (Admin)
 const sendPaymentReminder = async (req, res) => {
   try {
     const { batchId, studentIds = [], monthLabel, amount } = req.body;
@@ -124,9 +109,6 @@ const sendPaymentReminder = async (req, res) => {
   }
 };
 
-// @desc    Get notifications created by current admin
-// @route   GET /api/notifications/sent
-// @access  Private (Admin)
 const getSentNotifications = async (req, res) => {
   try {
     const sent = await Notification.find({ createdBy: req.user._id })

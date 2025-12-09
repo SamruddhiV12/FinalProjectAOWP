@@ -1,8 +1,5 @@
 const User = require('../models/User');
 
-// @desc    Get all students (Admin only)
-// @route   GET /api/students
-// @access  Private (Admin)
 const getAllStudents = async (req, res) => {
   try {
     const { batch, search } = req.query;
@@ -43,9 +40,6 @@ const getAllStudents = async (req, res) => {
   }
 };
 
-// @desc    Get student by ID (Admin only)
-// @route   GET /api/students/:id
-// @access  Private (Admin)
 const getStudentById = async (req, res) => {
   try {
     const student = await User.findById(req.params.id).select('-password');
@@ -71,9 +65,6 @@ const getStudentById = async (req, res) => {
   }
 };
 
-// @desc    Get students statistics (Admin only)
-// @route   GET /api/students/stats
-// @access  Private (Admin)
 const getStudentStats = async (req, res) => {
   try {
     // Total students
@@ -128,9 +119,6 @@ const getStudentStats = async (req, res) => {
   }
 };
 
-// @desc    Update student details (Admin only)
-// @route   PUT /api/students/:id
-// @access  Private (Admin)
 const updateStudent = async (req, res) => {
   try {
     const allowedUpdates = [

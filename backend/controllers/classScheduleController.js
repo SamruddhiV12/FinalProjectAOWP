@@ -2,9 +2,6 @@ const ClassSchedule = require('../models/ClassSchedule');
 const Batch = require('../models/Batch');
 const { createNotificationsForUsers } = require('./notificationController');
 
-// @desc    Create class schedule
-// @route   POST /api/class-schedules
-// @access  Private (Admin/Teacher)
 const createSchedule = async (req, res) => {
   try {
     const { batchId, date, startTime, endTime, topic, location, notes } = req.body;
@@ -49,9 +46,6 @@ const createSchedule = async (req, res) => {
   }
 };
 
-// @desc    Get schedules
-// @route   GET /api/class-schedules
-// @access  Private
 const getSchedules = async (req, res) => {
   try {
     const { startDate, endDate, batchId, published } = req.query;
@@ -104,9 +98,6 @@ const getSchedules = async (req, res) => {
   }
 };
 
-// @desc    Get schedule by ID
-// @route   GET /api/class-schedules/:id
-// @access  Private
 const getScheduleById = async (req, res) => {
   try {
     const schedule = await ClassSchedule.findById(req.params.id)
@@ -134,9 +125,6 @@ const getScheduleById = async (req, res) => {
   }
 };
 
-// @desc    Update schedule
-// @route   PUT /api/class-schedules/:id
-// @access  Private (Admin/Teacher)
 const updateSchedule = async (req, res) => {
   try {
     const allowedUpdates = [
@@ -186,9 +174,6 @@ const updateSchedule = async (req, res) => {
   }
 };
 
-// @desc    Delete schedule
-// @route   DELETE /api/class-schedules/:id
-// @access  Private (Admin/Teacher)
 const deleteSchedule = async (req, res) => {
   try {
     const schedule = await ClassSchedule.findByIdAndDelete(req.params.id);
@@ -214,9 +199,6 @@ const deleteSchedule = async (req, res) => {
   }
 };
 
-// @desc    Publish/Unpublish schedule
-// @route   PATCH /api/class-schedules/:id/publish
-// @access  Private (Admin/Teacher)
 const togglePublish = async (req, res) => {
   try {
     const schedule = await ClassSchedule.findById(req.params.id);

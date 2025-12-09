@@ -11,8 +11,6 @@ function ReviewSubmissions({ user }) {
   });
 
   useEffect(() => {
-    // MOCK DATA - Replace with API call later
-    // TODO: GET /api/submissions/pending
     setSubmissions([
       { 
         id: 1, 
@@ -51,9 +49,6 @@ function ReviewSubmissions({ user }) {
       return;
     }
 
-    // MOCK SUBMISSION - Replace with API call later
-    // TODO: POST /api/feedback
-    
     alert('Feedback submitted successfully! ✅\n\nThe student will be notified.');
     setSelectedSubmission(null);
     setSubmissions(submissions.filter(s => s.id !== selectedSubmission.id));

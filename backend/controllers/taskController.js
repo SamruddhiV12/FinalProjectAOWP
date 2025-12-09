@@ -1,8 +1,5 @@
 const Task = require('../models/Task');
 
-// @desc    Create a task
-// @route   POST /api/tasks
-// @access  Private (Admin)
 exports.createTask = async (req, res) => {
   try {
     const { title, description, category, status, priority, dueDate } = req.body;
@@ -24,9 +21,6 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// @desc    Get tasks (filter by status/category)
-// @route   GET /api/tasks
-// @access  Private (Admin)
 exports.getTasks = async (req, res) => {
   try {
     const { status, category } = req.query;
@@ -42,9 +36,6 @@ exports.getTasks = async (req, res) => {
   }
 };
 
-// @desc    Update a task
-// @route   PUT /api/tasks/:id
-// @access  Private (Admin)
 exports.updateTask = async (req, res) => {
   try {
     const allowed = ['title', 'description', 'category', 'status', 'priority', 'dueDate'];
@@ -65,9 +56,6 @@ exports.updateTask = async (req, res) => {
   }
 };
 
-// @desc    Delete a task
-// @route   DELETE /api/tasks/:id
-// @access  Private (Admin)
 exports.deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);

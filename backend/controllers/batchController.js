@@ -1,9 +1,6 @@
 const Batch = require('../models/Batch');
 const User = require('../models/User');
 
-// @desc    Create a new batch
-// @route   POST /api/batches
-// @access  Private (Admin)
 const createBatch = async (req, res) => {
   try {
     const {
@@ -50,9 +47,6 @@ const createBatch = async (req, res) => {
   }
 };
 
-// @desc    Get all batches
-// @route   GET /api/batches
-// @access  Private
 const getAllBatches = async (req, res) => {
   try {
     const { level, isActive } = req.query;
@@ -87,9 +81,6 @@ const getAllBatches = async (req, res) => {
   }
 };
 
-// @desc    Get batch by ID
-// @route   GET /api/batches/:id
-// @access  Private
 const getBatchById = async (req, res) => {
   try {
     const batch = await Batch.findById(req.params.id)
@@ -117,9 +108,6 @@ const getBatchById = async (req, res) => {
   }
 };
 
-// @desc    Update batch
-// @route   PUT /api/batches/:id
-// @access  Private (Admin)
 const updateBatch = async (req, res) => {
   try {
     const allowedUpdates = [
@@ -181,9 +169,6 @@ const updateBatch = async (req, res) => {
   }
 };
 
-// @desc    Add student to batch
-// @route   POST /api/batches/:id/students
-// @access  Private (Admin)
 const addStudentToBatch = async (req, res) => {
   try {
     const { studentId } = req.body;
@@ -249,9 +234,6 @@ const addStudentToBatch = async (req, res) => {
   }
 };
 
-// @desc    Remove student from batch
-// @route   DELETE /api/batches/:id/students/:studentId
-// @access  Private (Admin)
 const removeStudentFromBatch = async (req, res) => {
   try {
     const { studentId } = req.params;
@@ -290,9 +272,6 @@ const removeStudentFromBatch = async (req, res) => {
   }
 };
 
-// @desc    Get batch statistics
-// @route   GET /api/batches/stats
-// @access  Private (Admin)
 const getBatchStats = async (req, res) => {
   try {
     const totalBatches = await Batch.countDocuments({ isActive: true });

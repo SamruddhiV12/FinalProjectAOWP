@@ -2,9 +2,6 @@ const Attendance = require('../models/Attendance');
 const Batch = require('../models/Batch');
 const User = require('../models/User');
 
-// @desc    Mark attendance for a batch
-// @route   POST /api/attendance
-// @access  Private (Admin/Teacher)
 const markAttendance = async (req, res) => {
   try {
     const { batchId, date, records, topic, duration } = req.body;
@@ -80,9 +77,6 @@ const markAttendance = async (req, res) => {
   }
 };
 
-// @desc    Get attendance records
-// @route   GET /api/attendance
-// @access  Private
 const getAttendanceRecords = async (req, res) => {
   try {
     const { batchId, startDate, endDate, studentId } = req.query;
@@ -133,9 +127,6 @@ const getAttendanceRecords = async (req, res) => {
   }
 };
 
-// @desc    Get attendance by ID
-// @route   GET /api/attendance/:id
-// @access  Private
 const getAttendanceById = async (req, res) => {
   try {
     const attendance = await Attendance.findById(req.params.id)
@@ -164,9 +155,6 @@ const getAttendanceById = async (req, res) => {
   }
 };
 
-// @desc    Get student attendance summary
-// @route   GET /api/attendance/student/:studentId/summary
-// @access  Private
 const getStudentAttendanceSummary = async (req, res) => {
   try {
     const { studentId } = req.params;
@@ -262,9 +250,6 @@ const getStudentAttendanceSummary = async (req, res) => {
   }
 };
 
-// @desc    Get batch attendance summary
-// @route   GET /api/attendance/batch/:batchId/summary
-// @access  Private
 const getBatchAttendanceSummary = async (req, res) => {
   try {
     const { batchId } = req.params;

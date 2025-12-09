@@ -1,10 +1,10 @@
-# 🎭 Samruddhi's Dance Academy - Backend API
+#  Samruddhi's Dance Academy - Backend API
 
 Backend API for the Dance Academy Management System built with Node.js, Express, and MongoDB.
 
 ---
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 ### Step 1: Install Dependencies
 
@@ -82,17 +82,17 @@ npm start
 
 You should see:
 ```
-✅ MongoDB Connected: cluster0.xxxxx.mongodb.net
-📊 Database Name: sda-database
-🚀 Server running on port 5000
+ MongoDB Connected: cluster0.xxxxx.mongodb.net
+ Database Name: sda-database
+ Server running on port 5000
 📍 Environment: development
-🌐 API URL: http://localhost:5000
+ API URL: http://localhost:5000
 🔗 Frontend URL: http://localhost:3000
 ```
 
 ---
 
-## 📚 API Endpoints
+##  API Endpoints
 
 ### Authentication Routes
 
@@ -339,11 +339,11 @@ The User model includes:
 
 ---
 
-## 📝 Next Steps
+##  Next Steps
 
 After backend is working:
 
-1. ✅ Test all auth endpoints
+1.  Test all auth endpoints
 2. Create more models (Assignment, Class, Payment, etc.)
 3. Build additional API endpoints
 4. Connect frontend to backend

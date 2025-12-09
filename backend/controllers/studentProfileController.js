@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const User = require('../models/User');
 const Batch = require('../models/Batch');
 
-// @desc    Get student profile
-// @route   GET /api/student-profile/:id
-// @access  Private (Student/Admin)
 exports.getStudentProfile = async (req, res) => {
   try {
     const studentId = req.params.id || req.user._id;
@@ -44,9 +41,6 @@ exports.getStudentProfile = async (req, res) => {
   }
 };
 
-// @desc    Update student profile
-// @route   PUT /api/student-profile/:id
-// @access  Private (Student/Admin)
 exports.updateStudentProfile = async (req, res) => {
   try {
     const studentId = req.params.id || req.user._id;
@@ -118,9 +112,6 @@ exports.updateStudentProfile = async (req, res) => {
   }
 };
 
-// @desc    Get student stats
-// @route   GET /api/student-profile/:id/stats
-// @access  Private (Student/Admin)
 exports.getStudentStats = async (req, res) => {
   try {
     const studentId = req.params.id || req.user._id;

@@ -1,9 +1,6 @@
 const Assignment = require('../models/Assignment');
 const AssignmentSubmission = require('../models/AssignmentSubmission');
 
-// @desc    Get all assignments (filtered for students)
-// @route   GET /api/assignments
-// @access  Private
 exports.getAssignments = async (req, res) => {
   try {
     const user = req.user;
@@ -67,9 +64,6 @@ exports.getAssignments = async (req, res) => {
   }
 };
 
-// @desc    Get count of submissions pending review
-// @route   GET /api/assignments/pending/reviews
-// @access  Private (Admin)
 exports.getPendingReviewCount = async (req, res) => {
   try {
     const pendingCount = await AssignmentSubmission.countDocuments({ status: 'Submitted' });
@@ -88,9 +82,6 @@ exports.getPendingReviewCount = async (req, res) => {
   }
 };
 
-// @desc    Get single assignment by ID
-// @route   GET /api/assignments/:id
-// @access  Private
 exports.getAssignmentById = async (req, res) => {
   try {
     const assignment = await Assignment.findById(req.params.id)
@@ -133,9 +124,6 @@ exports.getAssignmentById = async (req, res) => {
   }
 };
 
-// @desc    Create new assignment (Admin only)
-// @route   POST /api/assignments
-// @access  Private (Admin)
 exports.createAssignment = async (req, res) => {
   try {
     const {
@@ -174,9 +162,6 @@ exports.createAssignment = async (req, res) => {
   }
 };
 
-// @desc    Update assignment (Admin only)
-// @route   PUT /api/assignments/:id
-// @access  Private (Admin)
 exports.updateAssignment = async (req, res) => {
   try {
     const allowedUpdates = [
@@ -225,9 +210,6 @@ exports.updateAssignment = async (req, res) => {
   }
 };
 
-// @desc    Delete assignment (Admin only)
-// @route   DELETE /api/assignments/:id
-// @access  Private (Admin)
 exports.deleteAssignment = async (req, res) => {
   try {
     const assignment = await Assignment.findByIdAndDelete(req.params.id);
@@ -256,9 +238,6 @@ exports.deleteAssignment = async (req, res) => {
   }
 };
 
-// @desc    Submit assignment (Student)
-// @route   POST /api/assignments/:id/submit
-// @access  Private (Student)
 exports.submitAssignment = async (req, res) => {
   try {
     const { submissionText, submissionUrl } = req.body;
@@ -323,9 +302,6 @@ exports.submitAssignment = async (req, res) => {
   }
 };
 
-// @desc    Grade assignment submission (Admin)
-// @route   PUT /api/assignments/submissions/:submissionId/grade
-// @access  Private (Admin)
 exports.gradeSubmission = async (req, res) => {
   try {
     const { grade, feedback } = req.body;
@@ -379,9 +355,6 @@ exports.gradeSubmission = async (req, res) => {
   }
 };
 
-// @desc    Get submissions for an assignment (Admin)
-// @route   GET /api/assignments/:id/submissions
-// @access  Private (Admin)
 exports.getAssignmentSubmissions = async (req, res) => {
   try {
     const assignmentId = req.params.id;
