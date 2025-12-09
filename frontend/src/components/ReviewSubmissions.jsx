@@ -49,7 +49,7 @@ function ReviewSubmissions({ user }) {
       return;
     }
 
-    alert('Feedback submitted successfully! ✅\n\nThe student will be notified.');
+    alert('Feedback submitted successfully! \n\nThe student will be notified.');
     setSelectedSubmission(null);
     setSubmissions(submissions.filter(s => s.id !== selectedSubmission.id));
   };
