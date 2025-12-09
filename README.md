@@ -117,10 +117,4 @@ sda-prototype/
 - **UX/UI Focus**: Intuitive navigation, clear visual hierarchy
 - **Accessibility**: Proper contrast ratios and keyboard navigation
 
-## Contributing
 
-This is a student project for UIUC CS course.
-
-## License
-
-This project is created for educational purposes.
